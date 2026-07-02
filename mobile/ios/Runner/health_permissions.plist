@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+
+<!--
+  INSTRUÇÕES:
+  Abra ios/Runner/Info.plist e adicione as chaves abaixo
+  dentro do <dict> principal (não substituir o arquivo inteiro).
+
+  Estas chaves são OBRIGATÓRIAS para a App Store aprovar o app
+  quando HealthKit está declarado nas capabilities.
+-->
+
+<plist version="1.0">
+<dict>
+
+  <!-- ── Apple HealthKit ─────────────────────────────────── -->
+
+  <!-- Texto exibido no diálogo de permissão ao LEITURA de dados de saúde -->
+  <key>NSHealthShareUsageDescription</key>
+  <string>O Meu Personal AI lê seus passos e peso para exibir seu progresso diário e manter seus dados em sincronia.</string>
+
+  <!-- Texto exibido no diálogo de permissão ao ESCRITA de dados de saúde -->
+  <key>NSHealthUpdateUsageDescription</key>
+  <string>O Meu Personal AI salva seus treinos e peso no Apple Health para centralizar seu histórico de saúde em um só lugar.</string>
+
+  <!-- ── Outras permissões necessárias ───────────────────── -->
+
+  <!-- Câmera (fotos de progresso) -->
+  <key>NSCameraUsageDescription</key>
+  <string>Para tirar fotos de progresso e acompanhar sua evolução visual ao longo do tempo.</string>
+
+  <!-- Galeria (selecionar foto de progresso) -->
+  <key>NSPhotoLibraryUsageDescription</key>
+  <string>Para selecionar uma foto de progresso da sua galeria.</string>
+
+  <!-- Notificações (via Firebase Messaging — já configurado automaticamente) -->
+  <!-- Não precisa de entrada manual no Info.plist -->
+
+</dict>
+</plist>

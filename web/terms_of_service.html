@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Termos de Uso — Meu Personal AI</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --orange:#FF6B1A;--black:#111;--white:#fff;
+  --gray:#f5f5f3;--gray2:#ebebeb;
+  --text:#111;--text2:#555;--text3:#888;
+  --border:rgba(0,0,0,0.08);
+  --green:#22a868;--green-bg:#eaf6f1;
+  --red:#e05252;--red-bg:#fdf0f0;
+}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;background:var(--gray);color:var(--text);line-height:1.7;font-size:15px}
+.header{background:var(--black);padding:40px 24px 32px;color:#fff;text-align:center}
+.logo-row{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:20px}
+.logo-icon{width:48px;height:48px;border-radius:14px;background:var(--orange);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;color:#fff}
+.logo-name{font-size:22px;font-weight:700;color:#fff}
+.header h1{font-size:26px;font-weight:700;margin-bottom:8px}
+.header-sub{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.5}
+.badges{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+.badge{background:rgba(255,255,255,0.08);border:0.5px solid rgba(255,255,255,0.15);border-radius:20px;padding:5px 14px;font-size:12px;color:rgba(255,255,255,0.7)}
+.toc-box{background:var(--white);border-left:3px solid var(--orange);border-radius:0 12px 12px 0;padding:20px 24px;margin:24px auto;max-width:760px}
+.toc-title{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--orange);margin-bottom:12px}
+.toc-list{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:4px}
+.toc-list a{color:var(--text2);font-size:13px;text-decoration:none;display:flex;align-items:center;gap:6px;padding:3px 0}
+.toc-list a:hover{color:var(--orange)}
+.toc-num{font-size:11px;font-weight:600;color:var(--orange);min-width:18px}
+.container{max-width:760px;margin:0 auto;padding:0 20px 60px}
+.section{background:var(--white);border-radius:16px;border:0.5px solid var(--border);padding:28px 32px;margin-bottom:16px}
+.section-num{font-size:11px;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+.section h2{font-size:20px;font-weight:700;color:var(--text);margin-bottom:16px;padding-bottom:12px;border-bottom:0.5px solid var(--border)}
+.section h3{font-size:15px;font-weight:600;color:var(--text);margin:20px 0 8px}
+p{color:var(--text2);margin-bottom:12px;line-height:1.75}
+ul,ol{color:var(--text2);padding-left:20px;margin-bottom:12px}
+li{margin-bottom:6px;line-height:1.65}
+strong{color:var(--text);font-weight:600}
+a{color:var(--orange);text-decoration:none}
+a:hover{text-decoration:underline}
+.highlight-box{border-radius:10px;padding:14px 16px;margin:14px 0}
+.hb-orange{background:rgba(255,107,26,0.06);border-left:3px solid var(--orange)}
+.hb-green{background:var(--green-bg);border-left:3px solid var(--green)}
+.hb-red{background:var(--red-bg);border-left:3px solid var(--red)}
+.hb-gray{background:var(--gray);border-left:3px solid var(--gray2)}
+.hb-title{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
+.hb-orange .hb-title{color:var(--orange)}
+.hb-green .hb-title{color:#197a4e}
+.hb-red .hb-title{color:#c43030}
+.hb-gray .hb-title{color:var(--text3)}
+.plans-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}
+.plan-card{border:0.5px solid var(--border);border-radius:12px;padding:14px;text-align:center}
+.plan-card.featured{border:2px solid var(--orange)}
+.plan-name{font-size:14px;font-weight:700;margin-bottom:4px}
+.plan-price{font-size:20px;font-weight:700;color:var(--orange);margin-bottom:8px}
+.plan-period{font-size:11px;color:var(--text3)}
+.plan-items{list-style:none;padding:0;text-align:left;font-size:12px;color:var(--text2)}
+.plan-items li{padding:3px 0;border-bottom:0.5px solid var(--border)}
+.plan-items li:last-child{border:none}
+.plan-items li::before{content:"✓ ";color:var(--green);font-weight:600}
+.contact-box{background:var(--black);color:#fff;border-radius:14px;padding:24px;margin-top:8px;text-align:center}
+.contact-box h3{color:#fff;font-size:17px;margin-bottom:12px}
+.contact-item{font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:8px}
+.contact-item a{color:var(--orange)}
+.footer-doc{text-align:center;padding:32px 20px;font-size:12px;color:var(--text3);line-height:1.8}
+@media(max-width:600px){
+  .section{padding:20px 18px}
+  .toc-list{grid-template-columns:1fr}
+  .plans-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo-row">
+    <div class="logo-icon">MP</div>
+    <div class="logo-name">Meu Personal AI</div>
+  </div>
+  <h1>Termos de Uso</h1>
+  <div class="header-sub">Versão 1.0 &nbsp;·&nbsp; Vigência a partir de 1º de maio de 2026<br>Ao usar o app, você concorda com estes termos</div>
+  <div class="badges">
+    <span class="badge">App Store Ready</span>
+    <span class="badge">Google Play Ready</span>
+    <span class="badge">LGPD Compliant</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="toc-box">
+    <div class="toc-title">Índice</div>
+    <ul class="toc-list">
+      <li><a href="#t1"><span class="toc-num">1.</span> Aceitação dos termos</a></li>
+      <li><a href="#t2"><span class="toc-num">2.</span> O serviço</a></li>
+      <li><a href="#t3"><span class="toc-num">3.</span> Cadastro e conta</a></li>
+      <li><a href="#t4"><span class="toc-num">4.</span> Planos e pagamentos</a></li>
+      <li><a href="#t5"><span class="toc-num">5.</span> Uso aceitável</a></li>
+      <li><a href="#t6"><span class="toc-num">6.</span> Conteúdo e IA</a></li>
+      <li><a href="#t7"><span class="toc-num">7.</span> Propriedade intelectual</a></li>
+      <li><a href="#t8"><span class="toc-num">8.</span> Limitação de responsabilidade</a></li>
+      <li><a href="#t9"><span class="toc-num">9.</span> Saúde e segurança</a></li>
+      <li><a href="#t10"><span class="toc-num">10.</span> Rescisão</a></li>
+      <li><a href="#t11"><span class="toc-num">11.</span> Legislação e foro</a></li>
+      <li><a href="#t12"><span class="toc-num">12.</span> Disposições gerais</a></li>
+    </ul>
+  </div>
+
+  <div class="highlight-box hb-orange">
+    <div class="hb-title">Leia antes de continuar</div>
+    <p style="margin:0;font-size:13px">Estes Termos de Uso constituem um contrato legal entre você e a Meu Personal AI Tecnologia Ltda. Ao criar uma conta ou usar o aplicativo, você confirma que leu, entendeu e concorda com estes termos. Se não concordar, não use o serviço.</p>
+  </div>
+
+  <!-- 1 -->
+  <div class="section" id="t1">
+    <div class="section-num">Cláusula 1</div>
+    <h2>Aceitação dos termos</h2>
+    <p>Estes Termos de Uso ("Termos") regem o uso do aplicativo <strong>Meu Personal AI</strong> ("Serviço"), desenvolvido e operado por <strong>Meu Personal AI Tecnologia Ltda.</strong> ("nós", "nosso"), CNPJ [a preencher], com sede no Brasil.</p>
+    <p>Ao criar uma conta, baixar o aplicativo ou utilizar qualquer funcionalidade do Serviço, você ("Usuário") declara que:</p>
+    <ul>
+      <li>Tem <strong>18 anos ou mais</strong></li>
+      <li>Tem capacidade legal para celebrar contratos</li>
+      <li>Leu e compreendeu estes Termos e nossa <a href="privacy.html">Política de Privacidade</a></li>
+      <li>Concorda em ficar vinculado a estes Termos</li>
+    </ul>
+  </div>
+
+  <!-- 2 -->
+  <div class="section" id="t2">
+    <div class="section-num">Cláusula 2</div>
+    <h2>O serviço</h2>
+    <h3>2.1 O que oferecemos</h3>
+    <p>O Meu Personal AI é uma plataforma de treinamento físico assistido por inteligência artificial que oferece:</p>
+    <ul>
+      <li>Programas de treino personalizados gerados por IA</li>
+      <li>Acompanhamento de execução com progressão automática de carga</li>
+      <li>AI Coach para perguntas e adaptações em tempo real</li>
+      <li>Análise de progresso físico e de força</li>
+      <li>Funcionalidades sociais (ranking, desafios, amigos)</li>
+    </ul>
+
+    <h3>2.2 Disponibilidade</h3>
+    <p>Buscamos disponibilidade de <strong>99,5%</strong> do serviço. Podem ocorrer indisponibilidades para manutenção programada (com aviso prévio) ou por eventos fora do nosso controle. Não garantimos acesso ininterrupto.</p>
+
+    <h3>2.3 Evolução do serviço</h3>
+    <p>Podemos adicionar, modificar ou remover funcionalidades a qualquer momento. Para remoções significativas de funcionalidades pagas, avisaremos com <strong>30 dias de antecedência</strong>.</p>
+  </div>
+
+  <!-- 3 -->
+  <div class="section" id="t3">
+    <div class="section-num">Cláusula 3</div>
+    <h2>Cadastro e conta</h2>
+    <h3>3.1 Criação de conta</h3>
+    <p>Para usar o Serviço, você deve criar uma conta com e-mail válido ou via Google. Você é responsável por:</p>
+    <ul>
+      <li>Fornecer informações verdadeiras e atualizadas</li>
+      <li>Manter a confidencialidade de suas credenciais de acesso</li>
+      <li>Todas as atividades realizadas em sua conta</li>
+      <li>Nos notificar imediatamente sobre uso não autorizado: <a href="mailto:seguranca@meupersonalai.com.br">seguranca@meupersonalai.com.br</a></li>
+    </ul>
+
+    <h3>3.2 Uma conta por pessoa</h3>
+    <p>Cada usuário pode ter apenas uma conta gratuita. O plano Elite permite até 10 perfis sob uma única conta (para uso familiar ou por personal trainers com seus alunos).</p>
+
+    <h3>3.3 Informações de saúde</h3>
+    <p>As informações de saúde fornecidas (peso, lesões, objetivos) são usadas exclusivamente para personalizar seu programa. Recomendamos que sejam precisas para garantir a segurança das recomendações de treino.</p>
+  </div>
+
+  <!-- 4 -->
+  <div class="section" id="t4">
+    <div class="section-num">Cláusula 4</div>
+    <h2>Planos e pagamentos</h2>
+
+    <div class="plans-grid">
+      <div class="plan-card">
+        <div class="plan-name">Free</div>
+        <div class="plan-price">R$ 0</div>
+        <div class="plan-period">Para sempre</div>
+        <ul class="plan-items">
+          <li>1 programa ativo</li>
+          <li>5 msgs IA/dia</li>
+          <li>Execução de treinos</li>
+        </ul>
+      </div>
+      <div class="plan-card featured">
+        <div class="plan-name">Pro</div>
+        <div class="plan-price">R$ 39</div>
+        <div class="plan-period">/mês · ou R$29/mês anual</div>
+        <ul class="plan-items">
+          <li>IA ilimitada</li>
+          <li>Analytics completo</li>
+          <li>Social e ranking</li>
+          <li>Fotos de progresso</li>
+        </ul>
+      </div>
+      <div class="plan-card">
+        <div class="plan-name">Elite</div>
+        <div class="plan-price">R$ 89</div>
+        <div class="plan-period">/mês · ou R$69/mês anual</div>
+        <ul class="plan-items">
+          <li>Tudo do Pro</li>
+          <li>Até 10 perfis</li>
+          <li>Painel de trainer</li>
+          <li>Análise de postura</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>4.1 Trial gratuito</h3>
+    <p>Oferecemos <strong>7 dias gratuitos do plano Pro</strong> para novos usuários. Apenas um trial por conta. Ao término, a conta retorna automaticamente ao plano Free sem cobrança automática — você precisa escolher assinar para continuar com recursos Pro.</p>
+
+    <h3>4.2 Cobrança e renovação</h3>
+    <p>Assinaturas são cobradas antecipadamente e renovam automaticamente no mesmo período (mensal ou anual). Você pode cancelar a qualquer momento — o acesso continua até o fim do período pago.</p>
+
+    <h3>4.3 Cancelamento e reembolso</h3>
+    <p>Você pode cancelar a assinatura a qualquer momento nas configurações do app ou nas lojas (App Store / Google Play). Seguimos as políticas de reembolso das respectivas lojas:</p>
+    <ul>
+      <li><strong>App Store (iOS):</strong> Solicite reembolso em <a href="https://reportaproblem.apple.com" target="_blank">reportaproblem.apple.com</a> em até 14 dias</li>
+      <li><strong>Google Play (Android):</strong> Reembolso em até 48 horas pelo Play Store, ou solicite ao suporte do Google</li>
+    </ul>
+    <p>Adicionalmente, oferecemos reembolso total em até <strong>7 dias</strong> da primeira assinatura, sem perguntas. Após esse prazo, não realizamos reembolsos proporcionais exceto por falha grave no serviço.</p>
+
+    <h3>4.4 Alteração de preços</h3>
+    <p>Podemos alterar os preços com <strong>30 dias de aviso prévio</strong> por e-mail e notificação no app. A alteração não afeta assinaturas anuais em vigor — o novo preço se aplica na próxima renovação.</p>
+
+    <h3>4.5 Inadimplência</h3>
+    <p>Em caso de falha no pagamento, tentaremos cobrar por até 7 dias. Após isso, o plano é rebaixado automaticamente para Free sem perda de dados.</p>
+  </div>
+
+  <!-- 5 -->
+  <div class="section" id="t5">
+    <div class="section-num">Cláusula 5</div>
+    <h2>Uso aceitável</h2>
+    <h3>5.1 Você pode</h3>
+    <ul>
+      <li>Usar o Serviço para fins pessoais de treino e bem-estar</li>
+      <li>Compartilhar seu progresso nas redes sociais</li>
+      <li>Personal trainers (plano Elite): gerenciar programas de seus alunos</li>
+    </ul>
+
+    <h3>5.2 Você não pode</h3>
+    <div class="highlight-box hb-red">
+      <div class="hb-title">Proibições</div>
+      <ul style="margin:0;font-size:13px">
+        <li>Compartilhar, vender ou transferir sua conta para terceiros</li>
+        <li>Usar o Serviço para fins comerciais sem autorização expressa</li>
+        <li>Tentar burlar limites de plano, criar contas múltiplas para contornar restrições</li>
+        <li>Fazer engenharia reversa, descompilar ou extrair código do app</li>
+        <li>Usar bots, scripts ou automação para interagir com o Serviço</li>
+        <li>Publicar conteúdo falso, ofensivo ou que viole direitos de terceiros</li>
+        <li>Sobrecarregar intencionalmente nossa infraestrutura</li>
+        <li>Usar o Serviço para orientar terceiros como se fosse um médico ou fisioterapeuta</li>
+      </ul>
+    </div>
+    <p>A violação dessas regras pode resultar em suspensão ou encerramento imediato da conta, sem reembolso.</p>
+  </div>
+
+  <!-- 6 -->
+  <div class="section" id="t6">
+    <div class="section-num">Cláusula 6</div>
+    <h2>Conteúdo gerado pela IA e pelo usuário</h2>
+
+    <h3>6.1 Conteúdo da IA</h3>
+    <p>As respostas geradas pelo AI Coach são produzidas por modelos de linguagem (Claude, da Anthropic). Embora nos esforcemos para que sejam precisas e úteis:</p>
+    <ul>
+      <li>A IA pode cometer erros ou fornecer informações desatualizadas</li>
+      <li>As respostas não substituem aconselhamento médico ou de profissional de educação física</li>
+      <li>Você usa as recomendações da IA por sua conta e risco</li>
+    </ul>
+
+    <h3>6.2 Seu conteúdo</h3>
+    <p>Ao enviar mensagens, fotos e dados ao Serviço, você nos concede uma licença limitada, não exclusiva e revogável para usar esse conteúdo exclusivamente para operar e melhorar o Serviço. Você mantém todos os direitos sobre seu conteúdo.</p>
+    <p>Você é responsável pelo conteúdo que envia. Não envie informações de terceiros sem autorização.</p>
+  </div>
+
+  <!-- 7 -->
+  <div class="section" id="t7">
+    <div class="section-num">Cláusula 7</div>
+    <h2>Propriedade intelectual</h2>
+    <p>O Meu Personal AI, incluindo seu código, design, banco de exercícios, algoritmos de progressão, marcas e logotipos, é propriedade exclusiva da Meu Personal AI Tecnologia Ltda. ou de seus licenciantes.</p>
+    <p>Estes Termos não transferem qualquer propriedade intelectual para o usuário. Você recebe apenas uma licença limitada, pessoal, não exclusiva, intransferível e revogável para usar o app conforme estes Termos.</p>
+    <p>A marca "Meu Personal AI" e o logotipo são marcas registradas. Não use sem autorização escrita.</p>
+  </div>
+
+  <!-- 8 -->
+  <div class="section" id="t8">
+    <div class="section-num">Cláusula 8</div>
+    <h2>Limitação de responsabilidade</h2>
+
+    <h3>8.1 Isenções</h3>
+    <p>Na máxima extensão permitida por lei, não nos responsabilizamos por:</p>
+    <ul>
+      <li>Lesões, danos à saúde ou morte resultantes do uso das recomendações de treino</li>
+      <li>Perda de dados por falha de dispositivo ou erros do usuário</li>
+      <li>Indisponibilidade temporária do Serviço</li>
+      <li>Decisões tomadas com base em respostas da IA</li>
+      <li>Danos indiretos, consequenciais ou lucros cessantes</li>
+    </ul>
+
+    <h3>8.2 Limite de indenização</h3>
+    <p>Nossa responsabilidade total, em qualquer caso, está limitada ao <strong>valor pago nos últimos 12 meses</strong> pela assinatura ou R$100,00 (o que for maior).</p>
+
+    <h3>8.3 Força maior</h3>
+    <p>Não somos responsáveis por falhas decorrentes de casos fortuitos ou de força maior, incluindo, mas não se limitando a, falhas de provedores de nuvem, desastres naturais ou ataques cibernéticos.</p>
+  </div>
+
+  <!-- 9 -->
+  <div class="section" id="t9">
+    <div class="section-num">Cláusula 9</div>
+    <h2>Saúde, segurança e aviso médico</h2>
+
+    <div class="highlight-box hb-red">
+      <div class="hb-title">Aviso de saúde importante — leia com atenção</div>
+      <p style="margin:0 0 8px;font-size:13px"><strong>O Meu Personal AI não é um serviço médico e não fornece diagnóstico, tratamento ou aconselhamento médico.</strong></p>
+      <ul style="margin:0;font-size:13px">
+        <li>Consulte um médico antes de iniciar qualquer programa de exercícios, especialmente se tiver condições cardíacas, ortopédicas ou outras condições de saúde preexistentes</li>
+        <li>Pare imediatamente o exercício e procure atendimento médico se sentir dor no peito, falta de ar intensa, tontura, dor aguda ou qualquer sintoma incomum</li>
+        <li>As recomendações de carga da IA são sugestões — adapte sempre ao seu condicionamento real</li>
+        <li>Dores relatadas no app são registradas para adaptar o treino, mas não substituem avaliação profissional</li>
+        <li>Grávidas, pessoas em recuperação pós-cirúrgica e idosos devem obter autorização médica antes de usar o app</li>
+      </ul>
+    </div>
+
+    <p>Ao usar o Serviço, você declara que está ciente desses riscos e assume responsabilidade pela adequação dos exercícios ao seu estado de saúde atual.</p>
+  </div>
+
+  <!-- 10 -->
+  <div class="section" id="t10">
+    <div class="section-num">Cláusula 10</div>
+    <h2>Rescisão</h2>
+
+    <h3>10.1 Rescisão pelo usuário</h3>
+    <p>Você pode encerrar sua conta a qualquer momento em: App → Perfil → Privacidade → Excluir conta. O cancelamento de assinatura não exclui automaticamente a conta — são ações distintas.</p>
+
+    <h3>10.2 Rescisão por nós</h3>
+    <p>Podemos suspender ou encerrar sua conta, com ou sem aviso prévio, se você:</p>
+    <ul>
+      <li>Violar estes Termos</li>
+      <li>Usar o Serviço de forma fraudulenta ou abusiva</li>
+      <li>Não pagar a assinatura após período de graça</li>
+      <li>Fornecer informações falsas no cadastro</li>
+    </ul>
+
+    <h3>10.3 Efeitos da rescisão</h3>
+    <p>Após o encerramento, seu acesso ao Serviço cessa imediatamente. Seus dados são tratados conforme nossa <a href="privacy.html">Política de Privacidade</a> (Seção 8 — Retenção e exclusão). Você pode exportar seus dados antes do encerramento.</p>
+  </div>
+
+  <!-- 11 -->
+  <div class="section" id="t11">
+    <div class="section-num">Cláusula 11</div>
+    <h2>Legislação aplicável e foro</h2>
+    <p>Estes Termos são regidos pelas leis brasileiras, especialmente o <strong>Código de Defesa do Consumidor (Lei 8.078/1990)</strong>, o <strong>Marco Civil da Internet (Lei 12.965/2014)</strong> e a <strong>LGPD (Lei 13.709/2018)</strong>.</p>
+    <p>Disputas serão preferencialmente resolvidas por mediação ou arbitragem. Caso não seja possível, fica eleito o foro da comarca de <strong>[cidade sede da empresa]</strong>, com renúncia a qualquer outro, por mais privilegiado que seja.</p>
+    <p>Para reclamações de consumidor, você também pode recorrer ao <strong>Procon</strong> do seu estado ou à plataforma <a href="https://www.consumidor.gov.br" target="_blank">consumidor.gov.br</a>.</p>
+  </div>
+
+  <!-- 12 -->
+  <div class="section" id="t12">
+    <div class="section-num">Cláusula 12</div>
+    <h2>Disposições gerais</h2>
+
+    <h3>12.1 Integralidade</h3>
+    <p>Estes Termos, junto com a Política de Privacidade, constituem o acordo completo entre você e a Meu Personal AI Tecnologia Ltda. quanto ao uso do Serviço, substituindo quaisquer acordos anteriores.</p>
+
+    <h3>12.2 Divisibilidade</h3>
+    <p>Se qualquer disposição destes Termos for considerada inválida ou inaplicável, as demais disposições continuam em pleno vigor.</p>
+
+    <h3>12.3 Atualizações dos Termos</h3>
+    <p>Podemos atualizar estes Termos. Notificaremos sobre mudanças materiais com pelo menos <strong>15 dias de antecedência</strong> por e-mail e notificação no app. O uso continuado após a data de vigência implica aceitação.</p>
+
+    <h3>12.4 Cessão</h3>
+    <p>Você não pode ceder estes Termos ou seus direitos derivados sem consentimento escrito. Podemos ceder nossos direitos em caso de fusão, aquisição ou venda de ativos, mantendo os mesmos termos para o usuário.</p>
+
+    <h3>12.5 Renúncia</h3>
+    <p>A falha em exercer qualquer direito previsto nestes Termos não constitui renúncia a esse direito.</p>
+
+    <div class="contact-box">
+      <h3>Dúvidas sobre os Termos?</h3>
+      <div class="contact-item">📧 <a href="mailto:juridico@meupersonalai.com.br">juridico@meupersonalai.com.br</a></div>
+      <div class="contact-item">📧 <a href="mailto:suporte@meupersonalai.com.br">suporte@meupersonalai.com.br</a></div>
+      <div class="contact-item">⏱️ Resposta em até 5 dias úteis</div>
+      <div class="contact-item">📍 Meu Personal AI Tecnologia Ltda. — Brasil</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer-doc">
+  Meu Personal AI Tecnologia Ltda. · CNPJ [a preencher]<br>
+  Termos de Uso — Versão 1.0 · Vigência: 1º de maio de 2026<br>
+  Regido pela legislação brasileira · CDC, Marco Civil da Internet e LGPD<br><br>
+  <a href="privacy.html">Política de Privacidade</a> &nbsp;·&nbsp; <a href="#">Histórico de versões</a> &nbsp;·&nbsp; <a href="mailto:juridico@meupersonalai.com.br">Contato jurídico</a>
+</div>
+
+</body>
+</html>

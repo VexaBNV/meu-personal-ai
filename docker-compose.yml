@@ -1,0 +1,99 @@
+# ══════════════════════════════════════════════════════════════
+# Meu Personal AI — Docker Compose (Desenvolvimento)
+# Uso: docker compose up -d
+# ══════════════════════════════════════════════════════════════
+
+services:
+
+  # ── PostgreSQL ───────────────────────────────────────────────
+  postgres:
+    image: postgres:16-alpine
+    container_name: mpa_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: meupersonalai
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./migrations:/docker-entrypoint-initdb.d   # roda migrations na criação
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ── Redis ────────────────────────────────────────────────────
+  redis:
+    image: redis:7-alpine
+    container_name: mpa_redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ── API NestJS ───────────────────────────────────────────────
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: builder    # usa o stage de build para hot-reload
+    container_name: mpa_api
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    env_file: .env
+    environment:
+      # Sobrescreve as URLs para apontar para os containers locais
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/meupersonalai
+      REDIS_URL: redis://redis:6379
+      NODE_ENV: development
+    ports:
+      - "3000:3000"
+    volumes:
+      # Hot-reload: monta o código fonte
+      - ./src:/app/src:ro
+      - ./dist:/app/dist
+    command: npm run start:dev
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:3000/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      start_period: 60s
+      retries: 3
+
+  # ── Adminer (GUI do banco — opcional) ────────────────────────
+  adminer:
+    image: adminer:latest
+    container_name: mpa_adminer
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    ports:
+      - "8080:8080"
+    profiles:
+      - tools   # só sobe com: docker compose --profile tools up
+
+volumes:
+  postgres_data:
+  redis_data:
+
+# ── Uso rápido ────────────────────────────────────────────────
+# Subir tudo:           docker compose up -d
+# Ver logs da API:      docker compose logs -f api
+# Rodar migrations:     docker compose exec api npm run migration:run
+# Rodar seed:           docker compose exec api npx ts-node scripts/generate-exercise-bank.ts
+# Subir com Adminer:    docker compose --profile tools up -d
+# Parar tudo:           docker compose down
+# Apagar volumes:       docker compose down -v

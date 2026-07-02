@@ -1,0 +1,53 @@
+<!--
+  INSTRUÇÕES:
+  Abra android/app/src/main/AndroidManifest.xml e adicione
+  as permissões abaixo ANTES de <application ...>:
+-->
+
+<!-- ── Google Fit / Health Connect ───────────────────────── -->
+
+<!-- Leitura de dados de atividade (passos, calorias) -->
+<uses-permission android:name="android.permission.ACTIVITY_RECOGNITION"/>
+
+<!-- Escrita de dados de saúde (treinos, peso) -->
+<uses-permission android:name="android.permission.health.WRITE_EXERCISE"/>
+<uses-permission android:name="android.permission.health.WRITE_BODY_MEASUREMENTS"/>
+<uses-permission android:name="android.permission.health.READ_STEPS"/>
+<uses-permission android:name="android.permission.health.READ_BODY_MEASUREMENTS"/>
+
+<!--
+  ─── Dentro de <application ...>, adicione esta intent-filter ───
+  Necessário para o Health Connect reconhecer o app como cliente:
+-->
+<activity android:name="androidx.health.connect.client.HealthConnectClient">
+    <intent-filter>
+        <action android:name="androidx.health.ACTION_HEALTH_CONNECT_SETTINGS"/>
+    </intent-filter>
+</activity>
+
+<!--
+  ─── build.gradle (android/app/build.gradle) ─────────────────
+  Garanta que minSdkVersion >= 26 (exigido pelo Health Connect):
+
+  android {
+      defaultConfig {
+          minSdkVersion 26   ← alterar de 21 para 26 se necessário
+      }
+  }
+
+  ─── Google Fit (API antiga, para Android < 14) ───────────────
+  Se quiser suportar dispositivos mais antigos, adicione também
+  a dependência no build.gradle:
+
+  dependencies {
+      implementation 'com.google.android.gms:play-services-fitness:21.1.0'
+      implementation 'com.google.android.gms:play-services-auth:21.0.0'
+  }
+
+  ─── Google Cloud Console (OAuth para Fit API) ───────────────
+  1. https://console.cloud.google.com
+  2. Ative a "Fitness API"
+  3. Crie credenciais OAuth 2.0 → Android
+  4. SHA-1 do keystore de debug: keytool -list -v -keystore ~/.android/debug.keystore
+  5. SHA-1 do keystore de produção: extrair do Android Signing no Play Console
+-->

@@ -1,0 +1,19 @@
+# fastlane/Appfile
+
+# iOS
+app_identifier("br.com.meupersonalai")
+apple_id("seu@email.com")           # e-mail da conta Apple Developer
+team_id("XXXXXXXXXX")               # Team ID — developer.apple.com → Membership
+
+# Android
+json_key_file("")                   # deixe vazio — usamos json_key_data via env
+package_name("br.com.meupersonalai")
+
+# Para todos os ambientes
+for_platform :ios do
+  app_identifier("br.com.meupersonalai")
+end
+
+for_platform :android do
+  package_name("br.com.meupersonalai")
+end
