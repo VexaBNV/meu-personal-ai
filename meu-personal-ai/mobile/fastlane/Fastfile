@@ -1,0 +1,125 @@
+# ══════════════════════════════════════════════════════════════
+# fastlane/Fastfile
+# Deploy automático para TestFlight (iOS) e Play Internal Track (Android)
+#
+# Setup:
+#   gem install fastlane
+#   fastlane supply init    # Android — baixa metadados existentes
+#   fastlane pilot          # iOS — requer Apple Developer account
+# ══════════════════════════════════════════════════════════════
+
+default_platform(:ios)
+
+# ── Variáveis de ambiente esperadas ──────────────────────────
+# APP_STORE_CONNECT_API_KEY_ID
+# APP_STORE_CONNECT_API_KEY_ISSUER_ID
+# APP_STORE_CONNECT_API_KEY_KEY        (conteúdo do .p8, não o path)
+# GOOGLE_PLAY_JSON_KEY                 (conteúdo do JSON, não o path)
+# MATCH_PASSWORD                       (senha do repositório de certs)
+# MATCH_GIT_URL                        (repo privado com certs)
+# FLUTTER_BUILD_ARGS                   (ex: --dart-define=API_BASE_URL=https://api.meupersonalai.com.br)
+
+# ────────────────────────────────────────────────────────────
+# iOS
+# ────────────────────────────────────────────────────────────
+platform :ios do
+
+  desc "Instala certificados e provisioning profiles"
+  lane :certs do
+    app_store_connect_api_key(
+      key_id:        ENV["APP_STORE_CONNECT_API_KEY_ID"],
+      issuer_id:     ENV["APP_STORE_CONNECT_API_KEY_ISSUER_ID"],
+      key_content:   ENV["APP_STORE_CONNECT_API_KEY_KEY"],
+    )
+    match(
+      type:        "appstore",
+      readonly:    true,
+      git_url:     ENV["MATCH_GIT_URL"],
+      password:    ENV["MATCH_PASSWORD"],
+      app_identifier: "br.com.meupersonalai",
+    )
+  end
+
+  desc "Build e envio para TestFlight"
+  lane :beta do
+    # Incrementa build number automaticamente
+    increment_build_number(
+      build_number: Time.now.strftime("%Y%m%d%H%M"),
+      xcodeproj:    "ios/Runner.xcodeproj",
+    )
+
+    certs
+
+    # Build Flutter
+    sh("cd .. && flutter build ipa --release #{ENV['FLUTTER_BUILD_ARGS']} " \
+       "--export-options-plist ios/ExportOptions.plist")
+
+    # Upload para TestFlight
+    upload_to_testflight(
+      ipa:                    "build/ios/ipa/meu_personal_ai.ipa",
+      skip_waiting_for_build_processing: true,
+      changelog:              changelog_from_git_commits(
+        commits_count: 5,
+        pretty: "- %s",
+      ),
+    )
+
+    # Notifica no Slack (opcional)
+    if ENV["SLACK_WEBHOOK_URL"]
+      slack(
+        message:        "🍎 Nova build iOS enviada para TestFlight!",
+        webhook_url:    ENV["SLACK_WEBHOOK_URL"],
+        payload:        { "Build" => lane_context[SharedValues::BUILD_NUMBER] },
+        default_payloads: [],
+      )
+    end
+  end
+
+  error do |lane, exception|
+    puts "Erro na lane #{lane}: #{exception.message}"
+  end
+end
+
+# ────────────────────────────────────────────────────────────
+# Android
+# ────────────────────────────────────────────────────────────
+platform :android do
+
+  desc "Build e envio para Play Internal Track"
+  lane :beta do
+    # Lê versão do pubspec.yaml
+    version_name = sh("cd .. && grep '^version:' pubspec.yaml | awk '{print $2}' | cut -d'+' -f1").strip
+    version_code = Time.now.strftime("%Y%m%d%H%M").to_i
+
+    # Build Flutter AAB
+    sh("cd .. && flutter build appbundle --release #{ENV['FLUTTER_BUILD_ARGS']} " \
+       "--build-number=#{version_code} --build-name=#{version_name}")
+
+    # Upload para Play Store (Internal Testing Track)
+    upload_to_play_store(
+      track:              "internal",
+      aab:                "build/app/outputs/bundle/release/app-release.aab",
+      json_key_data:      ENV["GOOGLE_PLAY_JSON_KEY"],
+      package_name:       "br.com.meupersonalai",
+      release_status:     "draft",
+      version_name:       version_name,
+      skip_upload_metadata: true,
+      skip_upload_images:   true,
+      skip_upload_screenshots: true,
+    )
+
+    # Notifica no Slack (opcional)
+    if ENV["SLACK_WEBHOOK_URL"]
+      slack(
+        message:        "🤖 Nova build Android enviada para Internal Track!",
+        webhook_url:    ENV["SLACK_WEBHOOK_URL"],
+        payload:        { "Versão" => "#{version_name}+#{version_code}" },
+        default_payloads: [],
+      )
+    end
+  end
+
+  error do |lane, exception|
+    puts "Erro na lane #{lane}: #{exception.message}"
+  end
+end

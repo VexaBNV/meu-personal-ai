@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Política de Privacidade — Meu Personal AI</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --orange:#FF6B1A;--black:#111;--white:#fff;
+  --gray:#f5f5f3;--gray2:#ebebeb;
+  --text:#111;--text2:#555;--text3:#888;
+  --border:rgba(0,0,0,0.08);
+  --green:#22a868;--green-bg:#eaf6f1;
+}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;background:var(--gray);color:var(--text);line-height:1.7;font-size:15px}
+
+.header{background:var(--black);padding:40px 24px 32px;color:#fff;text-align:center}
+.logo-row{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:20px}
+.logo-icon{width:48px;height:48px;border-radius:14px;background:var(--orange);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;color:#fff}
+.logo-name{font-size:22px;font-weight:700;color:#fff}
+.header h1{font-size:26px;font-weight:700;margin-bottom:8px}
+.header-sub{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.5}
+.badges{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+.badge{background:rgba(255,255,255,0.08);border:0.5px solid rgba(255,255,255,0.15);border-radius:20px;padding:5px 14px;font-size:12px;color:rgba(255,255,255,0.7)}
+
+.toc-box{background:var(--white);border-left:3px solid var(--orange);border-radius:0 12px 12px 0;padding:20px 24px;margin:24px auto;max-width:760px}
+.toc-title{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--orange);margin-bottom:12px}
+.toc-list{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:4px}
+.toc-list a{color:var(--text2);font-size:13px;text-decoration:none;display:flex;align-items:center;gap:6px;padding:3px 0}
+.toc-list a:hover{color:var(--orange)}
+.toc-num{font-size:11px;font-weight:600;color:var(--orange);min-width:18px}
+
+.container{max-width:760px;margin:0 auto;padding:0 20px 60px}
+
+.section{background:var(--white);border-radius:16px;border:0.5px solid var(--border);padding:28px 32px;margin-bottom:16px}
+.section-num{font-size:11px;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+.section h2{font-size:20px;font-weight:700;color:var(--text);margin-bottom:16px;padding-bottom:12px;border-bottom:0.5px solid var(--border)}
+.section h3{font-size:15px;font-weight:600;color:var(--text);margin:20px 0 8px}
+p{color:var(--text2);margin-bottom:12px;line-height:1.75}
+ul,ol{color:var(--text2);padding-left:20px;margin-bottom:12px}
+li{margin-bottom:6px;line-height:1.65}
+strong{color:var(--text);font-weight:600}
+a{color:var(--orange);text-decoration:none}
+a:hover{text-decoration:underline}
+
+.highlight-box{border-radius:10px;padding:14px 16px;margin:14px 0}
+.hb-orange{background:rgba(255,107,26,0.06);border-left:3px solid var(--orange)}
+.hb-green{background:var(--green-bg);border-left:3px solid var(--green)}
+.hb-gray{background:var(--gray);border-left:3px solid var(--gray2)}
+.hb-title{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
+.hb-orange .hb-title{color:var(--orange)}
+.hb-green .hb-title{color:#197a4e}
+.hb-gray .hb-title{color:var(--text3)}
+
+.data-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13px}
+.data-table th{background:var(--gray);padding:10px 14px;text-align:left;font-weight:600;color:var(--text);border-bottom:0.5px solid var(--border);font-size:12px;text-transform:uppercase;letter-spacing:.04em}
+.data-table td{padding:10px 14px;border-bottom:0.5px solid var(--border);color:var(--text2);vertical-align:top}
+.data-table tr:last-child td{border-bottom:none}
+.data-table tr:hover td{background:var(--gray)}
+
+.tag{display:inline-block;font-size:10px;font-weight:600;padding:2px 8px;border-radius:10px;vertical-align:middle}
+.tag-green{background:#eaf6f1;color:#197a4e}
+.tag-amber{background:#fef8ee;color:#c07810}
+.tag-blue{background:#eff6ff;color:#1a4db0}
+
+.rights-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
+.right-card{border:0.5px solid var(--border);border-radius:10px;padding:14px}
+.right-icon{font-size:22px;margin-bottom:8px}
+.right-title{font-size:13px;font-weight:600;margin-bottom:4px}
+.right-desc{font-size:12px;color:var(--text2);line-height:1.5}
+
+.contact-box{background:var(--black);color:#fff;border-radius:14px;padding:24px;margin-top:8px;text-align:center}
+.contact-box h3{color:#fff;font-size:17px;margin-bottom:12px}
+.contact-item{font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:8px}
+.contact-item a{color:var(--orange)}
+
+.footer-doc{text-align:center;padding:32px 20px;font-size:12px;color:var(--text3);line-height:1.8}
+
+@media(max-width:600px){
+  .section{padding:20px 18px}
+  .toc-list{grid-template-columns:1fr}
+  .rights-grid{grid-template-columns:1fr}
+  .data-table{font-size:12px}
+  .data-table th,.data-table td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo-row">
+    <div class="logo-icon">MP</div>
+    <div class="logo-name">Meu Personal AI</div>
+  </div>
+  <h1>Política de Privacidade</h1>
+  <div class="header-sub">Versão 1.0 &nbsp;·&nbsp; Vigência a partir de 1º de maio de 2026<br>Em conformidade com a LGPD — Lei nº 13.709/2018</div>
+  <div class="badges">
+    <span class="badge">LGPD Compliant</span>
+    <span class="badge">GDPR Aligned</span>
+    <span class="badge">App Store Ready</span>
+    <span class="badge">Google Play Ready</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="toc-box">
+    <div class="toc-title">Índice</div>
+    <ul class="toc-list">
+      <li><a href="#s1"><span class="toc-num">1.</span> Quem somos</a></li>
+      <li><a href="#s2"><span class="toc-num">2.</span> Dados que coletamos</a></li>
+      <li><a href="#s3"><span class="toc-num">3.</span> Como usamos seus dados</a></li>
+      <li><a href="#s4"><span class="toc-num">4.</span> Base legal</a></li>
+      <li><a href="#s5"><span class="toc-num">5.</span> Compartilhamento</a></li>
+      <li><a href="#s6"><span class="toc-num">6.</span> IA e dados de saúde</a></li>
+      <li><a href="#s7"><span class="toc-num">7.</span> Segurança</a></li>
+      <li><a href="#s8"><span class="toc-num">8.</span> Retenção e exclusão</a></li>
+      <li><a href="#s9"><span class="toc-num">9.</span> Seus direitos (LGPD)</a></li>
+      <li><a href="#s10"><span class="toc-num">10.</span> Cookies e rastreamento</a></li>
+      <li><a href="#s11"><span class="toc-num">11.</span> Menores de idade</a></li>
+      <li><a href="#s12"><span class="toc-num">12.</span> Atualizações</a></li>
+      <li><a href="#s13"><span class="toc-num">13.</span> Contato e DPO</a></li>
+    </ul>
+  </div>
+
+  <div class="highlight-box hb-orange">
+    <div class="hb-title">Resumo em linguagem simples</div>
+    <p style="margin:0;font-size:13px">Coletamos apenas o necessário para te oferecer um personal trainer com IA. Seus dados de saúde nunca são vendidos. Você pode exportar ou excluir tudo a qualquer momento. Usamos Claude (Anthropic) para gerar respostas da IA — suas mensagens são processadas mas não usadas para treinar modelos terceiros.</p>
+  </div>
+
+  <!-- 1. QUEM SOMOS -->
+  <div class="section" id="s1">
+    <div class="section-num">Seção 1</div>
+    <h2>Quem somos</h2>
+    <p><strong>Controlador dos dados:</strong> Meu Personal AI Tecnologia Ltda., CNPJ [a preencher], com sede em [cidade/estado], Brasil.</p>
+    <p><strong>Encarregado de Proteção de Dados (DPO):</strong> [Nome do DPO] — <a href="mailto:privacidade@meupersonalai.com.br">privacidade@meupersonalai.com.br</a></p>
+    <p>O <strong>Meu Personal AI</strong> é um aplicativo de personal trainer com inteligência artificial disponível para iOS e Android. Ao usar nosso serviço, você confia a nós informações sobre sua saúde e hábitos. Levamos isso muito a sério.</p>
+  </div>
+
+  <!-- 2. DADOS QUE COLETAMOS -->
+  <div class="section" id="s2">
+    <div class="section-num">Seção 2</div>
+    <h2>Dados que coletamos</h2>
+
+    <h3>2.1 Dados fornecidos por você</h3>
+    <table class="data-table">
+      <thead><tr><th>Categoria</th><th>Dados</th><th>Quando</th><th>Sensível?</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Identificação</strong></td><td>Nome, e-mail, foto de perfil</td><td>Cadastro</td><td><span class="tag tag-blue">Não</span></td></tr>
+        <tr><td><strong>Dados físicos</strong></td><td>Peso, altura, idade, % de gordura corporal</td><td>Anamnese e atualizações</td><td><span class="tag tag-amber">Sensível</span></td></tr>
+        <tr><td><strong>Saúde e lesões</strong></td><td>Lesões relatadas, dores durante treino</td><td>Anamnese e execução</td><td><span class="tag tag-amber">Sensível</span></td></tr>
+        <tr><td><strong>Fotos de progresso</strong></td><td>Imagens corporais antes/depois</td><td>Opcional, plano Pro/Elite</td><td><span class="tag tag-amber">Sensível</span></td></tr>
+        <tr><td><strong>Objetivos</strong></td><td>Meta (hipertrofia, emagrecimento etc.), nível, disponibilidade</td><td>Anamnese</td><td><span class="tag tag-blue">Não</span></td></tr>
+        <tr><td><strong>Conversas com a IA</strong></td><td>Mensagens enviadas ao AI Coach</td><td>Uso do app</td><td><span class="tag tag-amber">Sensível</span></td></tr>
+      </tbody>
+    </table>
+
+    <h3>2.2 Dados gerados automaticamente</h3>
+    <table class="data-table">
+      <thead><tr><th>Categoria</th><th>Dados</th><th>Finalidade</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Histórico de treino</strong></td><td>Séries, cargas, repetições, duração, outcome</td><td>Progressão inteligente de carga</td></tr>
+        <tr><td><strong>Métricas de engajamento</strong></td><td>Streak, aderência, horário de uso</td><td>Notificações personalizadas</td></tr>
+        <tr><td><strong>Token de notificação (FCM)</strong></td><td>Identificador do dispositivo para push</td><td>Envio de notificações</td></tr>
+        <tr><td><strong>Logs de uso</strong></td><td>Telas acessadas, erros, latência</td><td>Melhoria do serviço</td></tr>
+      </tbody>
+    </table>
+
+    <h3>2.3 Dados que NÃO coletamos</h3>
+    <div class="highlight-box hb-green">
+      <div class="hb-title">O que nunca fazemos</div>
+      <ul style="margin:0;font-size:13px">
+        <li>Não coletamos localização GPS</li>
+        <li>Não acessamos contatos, câmera ou microfone sem permissão explícita</li>
+        <li>Não coletamos dados biométricos (impressão digital, Face ID) — esses ficam no dispositivo</li>
+        <li>Não compramos ou cruzamos dados de terceiros</li>
+        <li>Não vendemos dados para anunciantes</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 3. COMO USAMOS -->
+  <div class="section" id="s3">
+    <div class="section-num">Seção 3</div>
+    <h2>Como usamos seus dados</h2>
+    <p>Cada dado coletado tem uma finalidade específica e limitada:</p>
+    <ul>
+      <li><strong>Gerar e personalizar seu programa de treino</strong> — peso, altura, objetivo, nível e lesões são enviados à IA para criar um programa adequado para você.</li>
+      <li><strong>Progressão automática de carga</strong> — histórico de séries e resultados alimentam o algoritmo que decide se você deve aumentar, manter ou reduzir o peso na próxima sessão.</li>
+      <li><strong>Respostas do AI Coach</strong> — suas mensagens e contexto de treino são processados pela IA para gerar respostas personalizadas. Nenhum dado é usado para treinar modelos.</li>
+      <li><strong>Notificações inteligentes</strong> — streak e padrão de treino determinam quando e como te notificamos para manter a consistência.</li>
+      <li><strong>Segurança e prevenção de fraudes</strong> — logs de acesso ajudam a identificar atividade suspeita na sua conta.</li>
+      <li><strong>Melhoria do produto</strong> — dados agregados e anonimizados sobre padrões de uso ajudam a melhorar o app.</li>
+    </ul>
+    <div class="highlight-box hb-gray">
+      <div class="hb-title">Importante</div>
+      <p style="margin:0;font-size:13px">Nunca usamos seus dados para fins diferentes dos declarados acima. Qualquer novo uso será informado e sujeito a novo consentimento quando necessário.</p>
+    </div>
+  </div>
+
+  <!-- 4. BASE LEGAL -->
+  <div class="section" id="s4">
+    <div class="section-num">Seção 4</div>
+    <h2>Base legal para tratamento (LGPD Art. 7º e 11)</h2>
+    <table class="data-table">
+      <thead><tr><th>Dados</th><th>Base legal</th><th>Artigo LGPD</th></tr></thead>
+      <tbody>
+        <tr><td>Nome, e-mail, plano de treino, histórico</td><td>Execução de contrato</td><td>Art. 7º, V</td></tr>
+        <tr><td>Dados de saúde: peso, lesões, fotos corporais</td><td>Consentimento explícito</td><td>Art. 11, I</td></tr>
+        <tr><td>Conversas com a IA sobre saúde</td><td>Consentimento explícito</td><td>Art. 11, I</td></tr>
+        <tr><td>Logs de segurança e antifraude</td><td>Interesse legítimo</td><td>Art. 7º, IX</td></tr>
+        <tr><td>Dados agregados para melhoria do produto</td><td>Interesse legítimo</td><td>Art. 7º, IX</td></tr>
+        <tr><td>Notificações de marketing</td><td>Consentimento (revogável)</td><td>Art. 7º, I</td></tr>
+        <tr><td>Registros de exclusão (auditoria)</td><td>Obrigação legal</td><td>Art. 7º, II</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 5. COMPARTILHAMENTO -->
+  <div class="section" id="s5">
+    <div class="section-num">Seção 5</div>
+    <h2>Compartilhamento com terceiros</h2>
+    <p>Compartilhamos dados apenas com parceiros estritamente necessários para a operação do serviço, todos com contratos de proteção de dados (DPA):</p>
+    <table class="data-table">
+      <thead><tr><th>Parceiro</th><th>Finalidade</th><th>Dados compartilhados</th><th>País</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Anthropic (Claude API)</strong></td><td>Processamento de respostas da IA</td><td>Mensagens do chat + contexto de treino anonimizado</td><td>EUA</td></tr>
+        <tr><td><strong>Google Firebase</strong></td><td>Autenticação e notificações push</td><td>E-mail, token FCM</td><td>EUA</td></tr>
+        <tr><td><strong>Supabase (PostgreSQL)</strong></td><td>Banco de dados principal</td><td>Todos os dados estruturados</td><td>Brasil (São Paulo)</td></tr>
+        <tr><td><strong>Cloudflare R2</strong></td><td>Armazenamento de fotos</td><td>Fotos de progresso</td><td>Brasil</td></tr>
+        <tr><td><strong>Fly.io</strong></td><td>Hospedagem do servidor</td><td>Dados em trânsito (criptografados)</td><td>Brasil (GRU)</td></tr>
+        <tr><td><strong>Stripe</strong> (futuro)</td><td>Processamento de pagamentos</td><td>Dados de cobrança (não financeiros)</td><td>EUA/Brasil</td></tr>
+      </tbody>
+    </table>
+    <div class="highlight-box hb-orange">
+      <div class="hb-title">Transferência internacional</div>
+      <p style="margin:0;font-size:13px">Anthropic e Firebase processam dados nos EUA. Adotamos cláusulas contratuais padrão (SCCs) e garantias equivalentes conforme LGPD Art. 33. Os dados de saúde enviados à IA são minimizados — apenas o necessário para gerar a resposta.</p>
+    </div>
+    <p><strong>Nunca vendemos, alugamos ou trocamos seus dados com terceiros para fins publicitários.</strong></p>
+  </div>
+
+  <!-- 6. IA E DADOS DE SAÚDE -->
+  <div class="section" id="s6">
+    <div class="section-num">Seção 6</div>
+    <h2>Inteligência artificial e dados de saúde</h2>
+    <h3>6.1 Como a IA usa seus dados</h3>
+    <p>O AI Coach usa seu perfil (objetivo, nível, lesões), histórico recente de treinos e as mensagens que você envia para gerar respostas personalizadas. Esse contexto é enviado à API do Claude (Anthropic) a cada interação e <strong>não é armazenado pela Anthropic</strong> para treinar modelos.</p>
+
+    <h3>6.2 Decisões automatizadas</h3>
+    <p>O app toma decisões automatizadas sobre sua progressão de carga com base em algoritmos determinísticos (não puramente por IA). Você pode sempre questionar ou ajustar manualmente qualquer sugestão. Conforme LGPD Art. 20, você tem o direito de solicitar revisão humana de qualquer decisão automatizada que te afete significativamente.</p>
+
+    <h3>6.3 Limitações da IA</h3>
+    <div class="highlight-box hb-gray">
+      <div class="hb-title">Aviso importante</div>
+      <p style="margin:0;font-size:13px">O AI Coach não substitui um profissional de educação física ou médico. Sempre consulte um especialista antes de iniciar um programa de exercícios, especialmente se você tiver condições de saúde preexistentes. Em caso de dor intensa, pare imediatamente e procure atendimento médico.</p>
+    </div>
+  </div>
+
+  <!-- 7. SEGURANÇA -->
+  <div class="section" id="s7">
+    <div class="section-num">Seção 7</div>
+    <h2>Segurança dos dados</h2>
+    <p>Adotamos medidas técnicas e organizacionais para proteger seus dados:</p>
+    <ul>
+      <li><strong>Criptografia em trânsito:</strong> TLS 1.3 em todas as comunicações entre app e servidor</li>
+      <li><strong>Criptografia em repouso:</strong> dados no banco protegidos por criptografia AES-256</li>
+      <li><strong>Autenticação:</strong> tokens JWT com expiração de 15 minutos + refresh token de 30 dias</li>
+      <li><strong>Armazenamento local:</strong> tokens de sessão armazenados no Keychain (iOS) e EncryptedSharedPreferences (Android)</li>
+      <li><strong>Fotos:</strong> armazenadas com URLs assinadas de tempo limitado — acesso apenas com URL válida</li>
+      <li><strong>Acesso privilegiado:</strong> apenas engenheiros com necessidade e com autenticação multifator acessam dados de produção</li>
+      <li><strong>Monitoramento:</strong> alertas automáticos para acessos anômalos e tentativas de força bruta</li>
+    </ul>
+    <p>Em caso de incidente de segurança que afete seus dados, notificaremos a ANPD e os titulares afetados no prazo de 72 horas conforme LGPD Art. 48.</p>
+  </div>
+
+  <!-- 8. RETENÇÃO E EXCLUSÃO -->
+  <div class="section" id="s8">
+    <div class="section-num">Seção 8</div>
+    <h2>Retenção e exclusão de dados</h2>
+    <table class="data-table">
+      <thead><tr><th>Tipo de dado</th><th>Período de retenção</th><th>O que acontece ao excluir a conta</th></tr></thead>
+      <tbody>
+        <tr><td>Dados pessoais (nome, e-mail)</td><td>Enquanto a conta estiver ativa</td><td>Anonimizados imediatamente</td></tr>
+        <tr><td>Dados de saúde e lesões</td><td>Enquanto a conta estiver ativa</td><td>Anonimizados imediatamente</td></tr>
+        <tr><td>Fotos de progresso</td><td>Enquanto a conta estiver ativa</td><td>Deletadas permanentemente do servidor</td></tr>
+        <tr><td>Conversas com a IA</td><td>90 dias após cada mensagem</td><td>Deletadas imediatamente</td></tr>
+        <tr><td>Histórico de treino</td><td>Indefinido (anonimizado)</td><td>Mantido anonimamente para estatísticas</td></tr>
+        <tr><td>Registros de exclusão</td><td>5 anos (obrigação legal)</td><td>Mantidos para auditoria (sem dados pessoais)</td></tr>
+        <tr><td>Dados de pagamento</td><td>10 anos (obrigação fiscal)</td><td>Mantidos pelo Stripe conforme lei</td></tr>
+      </tbody>
+    </table>
+    <p>Contas inativas há mais de 2 anos receberão aviso antes de exclusão automática.</p>
+  </div>
+
+  <!-- 9. DIREITOS LGPD -->
+  <div class="section" id="s9">
+    <div class="section-num">Seção 9</div>
+    <h2>Seus direitos como titular (LGPD Art. 18)</h2>
+    <div class="rights-grid">
+      <div class="right-card">
+        <div class="right-icon">📋</div>
+        <div class="right-title">Confirmação e acesso</div>
+        <div class="right-desc">Confirmar se tratamos seus dados e obter uma cópia completa. Disponível em: App → Perfil → Privacidade → Exportar dados.</div>
+      </div>
+      <div class="right-card">
+        <div class="right-icon">✏️</div>
+        <div class="right-title">Correção</div>
+        <div class="right-desc">Corrigir dados incompletos, inexatos ou desatualizados. Disponível diretamente nas configurações do perfil.</div>
+      </div>
+      <div class="right-card">
+        <div class="right-icon">🗑️</div>
+        <div class="right-title">Exclusão</div>
+        <div class="right-desc">Excluir seus dados pessoais. Disponível em: App → Perfil → Privacidade → Excluir conta.</div>
+      </div>
+      <div class="right-card">
+        <div class="right-icon">📦</div>
+        <div class="right-title">Portabilidade</div>
+        <div class="right-desc">Receber seus dados em formato estruturado (JSON). Disponível em: App → Perfil → Privacidade → Exportar dados.</div>
+      </div>
+      <div class="right-card">
+        <div class="right-icon">🚫</div>
+        <div class="right-title">Oposição</div>
+        <div class="right-desc">Opor-se ao tratamento baseado em interesse legítimo. Envie solicitação ao DPO.</div>
+      </div>
+      <div class="right-card">
+        <div class="right-icon">↩️</div>
+        <div class="right-title">Revogação de consentimento</div>
+        <div class="right-desc">Revogar consentimentos dados. Disponível em: App → Perfil → Privacidade → Consentimentos.</div>
+      </div>
+      <div class="right-card">
+        <div class="right-icon">ℹ️</div>
+        <div class="right-title">Informação sobre compartilhamento</div>
+        <div class="right-desc">Saber com quem seus dados são compartilhados. Veja a Seção 5 desta política.</div>
+      </div>
+      <div class="right-card">
+        <div class="right-icon">🤖</div>
+        <div class="right-title">Revisão de decisão automatizada</div>
+        <div class="right-desc">Solicitar revisão humana de decisões automatizadas. Envie solicitação ao DPO.</div>
+      </div>
+    </div>
+    <p>Atendemos solicitações em até <strong>15 dias úteis</strong>. Em caso de não atendimento satisfatório, você pode recorrer à <strong>ANPD (Autoridade Nacional de Proteção de Dados)</strong> — <a href="https://www.gov.br/anpd" target="_blank">www.gov.br/anpd</a>.</p>
+  </div>
+
+  <!-- 10. COOKIES -->
+  <div class="section" id="s10">
+    <div class="section-num">Seção 10</div>
+    <h2>Cookies e rastreamento</h2>
+    <p>O <strong>aplicativo móvel</strong> não usa cookies. Utilizamos armazenamento local seguro (Hive) apenas para cache de dados offline e preferências do usuário.</p>
+    <p>Caso você acesse nosso <strong>site ou landing page</strong>:</p>
+    <ul>
+      <li><strong>Cookies essenciais:</strong> necessários para o funcionamento básico do site — não podem ser desativados.</li>
+      <li><strong>Cookies analíticos:</strong> métricas anônimas de visita (opt-in).</li>
+      <li><strong>Sem cookies de publicidade:</strong> não usamos rastreadores de anúncios.</li>
+    </ul>
+  </div>
+
+  <!-- 11. MENORES -->
+  <div class="section" id="s11">
+    <div class="section-num">Seção 11</div>
+    <h2>Menores de idade</h2>
+    <p>O Meu Personal AI é destinado a pessoas com <strong>18 anos ou mais</strong>. Não coletamos intencionalmente dados de menores de 18 anos. Se você é responsável legal por um menor que criou uma conta, entre em contato conosco imediatamente para que possamos excluir os dados.</p>
+    <p>Conforme LGPD Art. 14, o tratamento de dados de crianças e adolescentes exige consentimento parental específico — o que não é suportado em nosso modelo atual de serviço.</p>
+  </div>
+
+  <!-- 12. ATUALIZAÇÕES -->
+  <div class="section" id="s12">
+    <div class="section-num">Seção 12</div>
+    <h2>Atualizações desta política</h2>
+    <p>Podemos atualizar esta Política de Privacidade para refletir mudanças no serviço ou na legislação. Quando isso ocorrer:</p>
+    <ul>
+      <li>Notificaremos você por push notification e/ou e-mail com <strong>no mínimo 15 dias de antecedência</strong></li>
+      <li>A data de vigência será atualizada no topo do documento</li>
+      <li>Para mudanças substanciais que afetem dados de saúde, solicitaremos novo consentimento</li>
+      <li>O histórico de versões estará disponível em <a href="#">meupersonalai.com.br/privacidade/historico</a></li>
+    </ul>
+    <p>O uso continuado do app após a data de vigência implica aceitação das mudanças.</p>
+  </div>
+
+  <!-- 13. CONTATO E DPO -->
+  <div class="section" id="s13">
+    <div class="section-num">Seção 13</div>
+    <h2>Contato e Encarregado de Proteção de Dados</h2>
+    <p>Para exercer seus direitos ou tirar dúvidas sobre privacidade:</p>
+    <div class="contact-box">
+      <h3>Fale com nosso DPO</h3>
+      <div class="contact-item">📧 <a href="mailto:privacidade@meupersonalai.com.br">privacidade@meupersonalai.com.br</a></div>
+      <div class="contact-item">⏱️ Prazo de resposta: até 15 dias úteis</div>
+      <div class="contact-item">📍 Meu Personal AI Tecnologia Ltda. — Brasil</div>
+      <div class="contact-item" style="margin-top:12px;font-size:12px;color:rgba(255,255,255,0.4)">Para solicitações de exclusão de dados, use o app:<br>Perfil → Privacidade → Excluir conta</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer-doc">
+  Meu Personal AI Tecnologia Ltda. · CNPJ [a preencher]<br>
+  Política de Privacidade — Versão 1.0 · Vigência: 1º de maio de 2026<br>
+  Em conformidade com a Lei nº 13.709/2018 (LGPD)<br><br>
+  <a href="terms.html">Termos de Uso</a> &nbsp;·&nbsp; <a href="#">Histórico de versões</a> &nbsp;·&nbsp; <a href="mailto:privacidade@meupersonalai.com.br">Contato DPO</a>
+</div>
+
+</body>
+</html>

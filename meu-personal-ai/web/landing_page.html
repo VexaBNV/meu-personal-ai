@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meu Personal AI — Seu personal trainer com inteligência artificial</title>
+<meta name="description" content="O primeiro personal trainer com IA que aprende a cada treino, adapta em tempo real e nunca dá resposta genérica. Disponível para iOS e Android.">
+<meta property="og:title" content="Meu Personal AI">
+<meta property="og:description" content="Seu personal trainer com inteligência artificial">
+<meta property="og:image" content="https://meupersonalai.com.br/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --brand:#FF6B1A;--brand-dim:rgba(255,107,26,0.12);
+  --black:#0D0D0D;--dark:#141414;--card:#1A1A1A;
+  --white:#fff;--off:#F5F3EE;
+  --text:#0D0D0D;--muted:#888;--faint:#ccc;
+  --border:rgba(255,255,255,0.06);
+  --r:18px;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--black);
+  color:var(--white);
+  overflow-x:hidden;
+  cursor:default;
+}
+
+/* ── NOISE OVERLAY ── */
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity:.025;pointer-events:none;z-index:1000;
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:18px 40px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(13,13,13,0.85);
+  backdrop-filter:blur(20px);
+  border-bottom:0.5px solid var(--border);
+}
+.nav-logo{display:flex;align-items:center;gap:12px}
+.nav-icon{
+  width:38px;height:38px;border-radius:11px;
+  background:var(--brand);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Bebas Neue',sans-serif;font-size:17px;color:#fff;
+  letter-spacing:.02em;
+}
+.nav-name{font-size:15px;font-weight:500;letter-spacing:-.02em}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links a{
+  font-size:13px;color:rgba(255,255,255,0.55);
+  text-decoration:none;transition:color .2s;
+}
+.nav-links a:hover{color:#fff}
+.nav-cta{
+  background:var(--brand);color:#fff;
+  border:none;border-radius:10px;
+  padding:9px 20px;font-size:13px;font-weight:600;
+  cursor:pointer;font-family:inherit;transition:opacity .15s;
+  text-decoration:none;
+}
+.nav-cta:hover{opacity:.88}
+.nav-mobile{display:none}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;
+  padding:120px 24px 80px;
+  position:relative;overflow:hidden;
+}
+.hero-glow{
+  position:absolute;
+  width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,107,26,0.18) 0%,transparent 70%);
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  animation:pulse 4s ease-in-out infinite;
+  pointer-events:none;
+}
+@keyframes pulse{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:1}50%{transform:translate(-50%,-50%) scale(1.12);opacity:.7}}
+
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(255,107,26,0.1);
+  border:1px solid rgba(255,107,26,0.25);
+  border-radius:100px;padding:6px 16px;
+  font-size:12px;font-weight:500;color:var(--brand);
+  margin-bottom:32px;letter-spacing:.06em;text-transform:uppercase;
+  animation:fadeUp .6s ease both;
+}
+.badge-dot{width:6px;height:6px;border-radius:50%;background:var(--brand);animation:blink 1.5s ease infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+
+.hero h1{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(64px,11vw,148px);
+  line-height:.92;letter-spacing:-.01em;
+  color:#fff;
+  animation:fadeUp .7s .1s ease both;
+}
+.hero h1 em{color:var(--brand);font-style:normal}
+.hero-sub{
+  font-size:clamp(16px,2vw,20px);
+  color:rgba(255,255,255,0.5);
+  max-width:520px;line-height:1.6;
+  margin:24px auto 40px;
+  font-weight:300;
+  animation:fadeUp .7s .2s ease both;
+}
+.hero-actions{
+  display:flex;gap:12px;flex-wrap:wrap;justify-content:center;
+  animation:fadeUp .7s .3s ease both;
+}
+.btn-primary{
+  display:flex;align-items:center;gap:10px;
+  background:var(--brand);color:#fff;
+  border:none;border-radius:14px;padding:16px 28px;
+  font-size:15px;font-weight:600;cursor:pointer;
+  font-family:inherit;text-decoration:none;transition:all .2s;
+}
+.btn-primary:hover{opacity:.9;transform:translateY(-1px)}
+.btn-secondary{
+  display:flex;align-items:center;gap:8px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.12);
+  color:#fff;border-radius:14px;padding:16px 28px;
+  font-size:15px;font-weight:500;cursor:pointer;
+  font-family:inherit;text-decoration:none;transition:all .2s;
+}
+.btn-secondary:hover{background:rgba(255,255,255,0.1)}
+.store-icon{width:20px;height:20px;fill:#fff}
+
+.hero-proof{
+  display:flex;align-items:center;gap:16px;
+  margin-top:48px;
+  animation:fadeUp .7s .4s ease both;
+  color:rgba(255,255,255,0.4);font-size:13px;
+}
+.avatars{display:flex}
+.av{
+  width:32px;height:32px;border-radius:50%;
+  border:2px solid var(--black);
+  background:var(--brand);
+  margin-left:-8px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:600;color:#fff;
+}
+.av:first-child{margin-left:0}
+.stars{color:var(--brand);font-size:14px;letter-spacing:1px}
+
+/* ── PHONE MOCKUP ── */
+.phone-section{
+  padding:0 24px 120px;
+  display:flex;justify-content:center;
+  position:relative;
+}
+.phone-wrap{
+  position:relative;
+  animation:float 5s ease-in-out infinite;
+}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+.phone{
+  width:300px;
+  background:var(--dark);
+  border-radius:44px;
+  border:8px solid #2a2a2a;
+  overflow:hidden;
+  box-shadow:0 40px 80px rgba(0,0,0,0.6),0 0 0 1px rgba(255,255,255,0.05);
+  position:relative;
+}
+.phone-notch{
+  width:100px;height:30px;
+  background:#000;border-radius:0 0 20px 20px;
+  margin:0 auto;position:relative;z-index:10;
+}
+.phone-screen{padding:0 12px 20px;background:var(--dark)}
+.phone-topbar{
+  background:#000;padding:10px 16px 12px;margin:0 -12px;
+  display:flex;align-items:flex-end;justify-content:space-between;
+}
+.phone-greeting{font-size:9px;color:rgba(255,255,255,0.4)}
+.phone-name{font-size:15px;font-weight:700;color:#fff;line-height:1.1}
+.phone-avatar{
+  width:30px;height:30px;border-radius:50%;
+  background:var(--brand);
+  display:flex;align-items:center;justify-content:center;
+  font-size:10px;font-weight:700;color:#fff;
+}
+.ai-bubble{
+  background:rgba(255,107,26,0.1);
+  border:1px solid rgba(255,107,26,0.2);
+  border-radius:12px;padding:10px;margin:10px 0;
+}
+.ai-label{font-size:8px;color:var(--brand);font-weight:600;letter-spacing:.05em;margin-bottom:4px}
+.ai-text{font-size:9px;color:rgba(255,255,255,0.8);line-height:1.5}
+.phone-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:10px 0}
+.stat-card{background:rgba(255,255,255,0.05);border-radius:8px;padding:8px 6px;text-align:center}
+.stat-n{font-size:16px;font-weight:700;color:var(--brand)}
+.stat-l{font-size:7px;color:rgba(255,255,255,0.4)}
+.workout-card{
+  background:#000;border-radius:12px;padding:12px;margin-top:10px;
+}
+.wc-tag{font-size:7px;color:var(--brand);font-weight:600;letter-spacing:.06em;margin-bottom:6px}
+.wc-title{font-size:14px;font-weight:700;color:#fff;margin-bottom:2px}
+.wc-sub{font-size:8px;color:rgba(255,255,255,0.35);margin-bottom:10px}
+.wc-btn{
+  background:var(--brand);color:#fff;border:none;border-radius:8px;
+  padding:8px;width:100%;font-size:10px;font-weight:600;
+  font-family:inherit;cursor:pointer;
+}
+.phone-glow{
+  position:absolute;
+  width:300px;height:300px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,107,26,0.2) 0%,transparent 70%);
+  bottom:-100px;left:50%;transform:translateX(-50%);
+  pointer-events:none;
+}
+
+/* ── SECTIONS COMMON ── */
+section{padding:100px 24px}
+.container{max-width:1100px;margin:0 auto}
+.section-tag{
+  display:inline-block;font-size:11px;font-weight:600;
+  text-transform:uppercase;letter-spacing:.1em;
+  color:var(--brand);margin-bottom:16px;
+}
+.section-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(42px,6vw,80px);
+  line-height:.95;letter-spacing:-.01em;color:#fff;
+  margin-bottom:20px;
+}
+.section-sub{
+  font-size:17px;color:rgba(255,255,255,0.45);
+  max-width:520px;line-height:1.65;font-weight:300;
+}
+
+/* ── FEATURES ── */
+#features{background:var(--dark)}
+.features-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  background:var(--border);border-radius:24px;overflow:hidden;
+  margin-top:60px;
+  border:1px solid var(--border);
+}
+.feature-card{
+  background:var(--dark);padding:40px 32px;
+  transition:background .2s;position:relative;overflow:hidden;
+}
+.feature-card:hover{background:#1f1f1f}
+.feature-card::before{
+  content:'';position:absolute;
+  inset:0;background:linear-gradient(135deg,rgba(255,107,26,0.04) 0%,transparent 60%);
+  opacity:0;transition:opacity .3s;
+}
+.feature-card:hover::before{opacity:1}
+.feature-icon{
+  width:52px;height:52px;border-radius:14px;
+  background:var(--brand-dim);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:20px;font-size:24px;
+}
+.feature-title{font-size:18px;font-weight:600;margin-bottom:10px;color:#fff}
+.feature-desc{font-size:14px;color:rgba(255,255,255,0.45);line-height:1.65}
+
+/* ── HOW IT WORKS ── */
+#how{background:var(--black)}
+.steps{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:1px;background:rgba(255,255,255,0.05);
+  border-radius:20px;overflow:hidden;
+  margin-top:60px;
+  border:1px solid rgba(255,255,255,0.05);
+}
+.step{
+  background:var(--black);padding:36px 28px;
+  position:relative;
+}
+.step-num{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:56px;line-height:1;
+  color:rgba(255,107,26,0.15);
+  margin-bottom:16px;
+}
+.step-title{font-size:15px;font-weight:600;color:#fff;margin-bottom:8px}
+.step-desc{font-size:13px;color:rgba(255,255,255,0.4);line-height:1.6}
+
+/* ── AI SECTION ── */
+#ai{background:var(--dark)}
+.ai-layout{
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;
+  align-items:center;margin-top:60px;
+}
+.ai-chat{
+  background:#0D0D0D;border-radius:20px;
+  border:1px solid rgba(255,255,255,0.07);
+  padding:24px;
+}
+.chat-msg{display:flex;flex-direction:column;gap:12px}
+.msg{padding:12px 16px;border-radius:16px;font-size:14px;line-height:1.55;max-width:85%}
+.msg-ai{
+  background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.85);
+  border-radius:4px 16px 16px 16px;
+}
+.msg-user{
+  background:var(--brand);color:#fff;
+  border-radius:16px 16px 4px 16px;
+  align-self:flex-end;
+}
+.msg-name{font-size:10px;color:var(--brand);font-weight:600;margin-bottom:4px;letter-spacing:.04em}
+.chat-input-mock{
+  display:flex;gap:8px;margin-top:16px;padding-top:16px;
+  border-top:1px solid rgba(255,255,255,0.06);
+}
+.chat-input-field{
+  flex:1;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);
+  border-radius:22px;padding:10px 16px;
+  font-size:13px;color:rgba(255,255,255,0.3);
+}
+.chat-send{
+  width:36px;height:36px;border-radius:50%;
+  background:var(--brand);border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;
+}
+.ai-points{list-style:none;display:flex;flex-direction:column;gap:20px}
+.ai-point{display:flex;gap:16px;align-items:flex-start}
+.ai-point-icon{
+  width:40px;height:40px;border-radius:12px;flex-shrink:0;
+  background:var(--brand-dim);display:flex;align-items:center;justify-content:center;
+  font-size:18px;margin-top:2px;
+}
+.ai-point-title{font-size:15px;font-weight:600;color:#fff;margin-bottom:4px}
+.ai-point-desc{font-size:13px;color:rgba(255,255,255,0.4);line-height:1.6}
+
+/* ── PLANS ── */
+#plans{background:var(--black)}
+.plans-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
+  margin-top:60px;
+}
+.plan-card{
+  background:var(--dark);border-radius:20px;
+  border:1px solid rgba(255,255,255,0.07);
+  padding:32px;position:relative;overflow:hidden;
+  transition:transform .2s,border-color .2s;
+}
+.plan-card:hover{transform:translateY(-4px);border-color:rgba(255,255,255,0.15)}
+.plan-card.featured{
+  border:1px solid var(--brand);
+  background:linear-gradient(160deg,rgba(255,107,26,0.07) 0%,var(--dark) 50%);
+}
+.plan-badge{
+  position:absolute;top:24px;right:24px;
+  background:var(--brand);color:#fff;
+  font-size:10px;font-weight:700;padding:4px 10px;
+  border-radius:20px;letter-spacing:.04em;text-transform:uppercase;
+}
+.plan-name{font-family:'Bebas Neue',sans-serif;font-size:36px;color:#fff;letter-spacing:.02em;margin-bottom:4px}
+.plan-desc{font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:24px;line-height:1.5}
+.plan-price{display:flex;align-items:baseline;gap:4px;margin-bottom:6px}
+.plan-price-value{font-family:'Bebas Neue',sans-serif;font-size:52px;color:var(--brand)}
+.plan-price-period{font-size:14px;color:rgba(255,255,255,0.35)}
+.plan-annual{font-size:12px;color:rgba(255,255,255,0.3);margin-bottom:28px}
+.plan-annual strong{color:rgba(255,255,255,0.55)}
+.plan-divider{height:1px;background:rgba(255,255,255,0.07);margin-bottom:24px}
+.plan-features{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
+.plan-features li{display:flex;gap:10px;font-size:13px;color:rgba(255,255,255,0.6);align-items:flex-start}
+.pf-check{color:var(--brand);font-size:12px;margin-top:2px;flex-shrink:0}
+.pf-x{color:rgba(255,255,255,0.2);font-size:12px;margin-top:2px;flex-shrink:0}
+.pf-x ~ span{color:rgba(255,255,255,0.25)}
+.plan-btn{
+  width:100%;padding:14px;border-radius:12px;
+  font-size:14px;font-weight:600;cursor:pointer;
+  font-family:inherit;transition:all .2s;border:none;
+}
+.plan-btn-outline{
+  background:rgba(255,255,255,0.05);color:#fff;
+  border:1px solid rgba(255,255,255,0.12);
+}
+.plan-btn-outline:hover{background:rgba(255,255,255,0.09)}
+.plan-btn-primary{background:var(--brand);color:#fff}
+.plan-btn-primary:hover{opacity:.9}
+.plan-btn-dark{background:#fff;color:#111}
+.plan-btn-dark:hover{opacity:.92}
+
+/* ── STATS ── */
+#stats{
+  padding:80px 24px;
+  background:var(--dark);
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+}
+.stats-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+  background:rgba(255,255,255,0.05);
+  border-radius:20px;overflow:hidden;
+  border:1px solid rgba(255,255,255,0.05);
+}
+.stat-item{background:var(--dark);padding:40px 32px;text-align:center}
+.stat-value{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:56px;line-height:1;color:var(--brand);
+  margin-bottom:8px;
+}
+.stat-label{font-size:13px;color:rgba(255,255,255,0.4)}
+
+/* ── TESTIMONIALS ── */
+#testimonials{background:var(--black)}
+.testimonials-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
+  margin-top:60px;
+}
+.testimonial{
+  background:var(--dark);border-radius:20px;
+  border:1px solid rgba(255,255,255,0.07);
+  padding:28px;
+}
+.t-stars{color:var(--brand);font-size:14px;letter-spacing:2px;margin-bottom:14px}
+.t-text{font-size:14px;color:rgba(255,255,255,0.7);line-height:1.7;margin-bottom:20px;font-weight:300}
+.t-author{display:flex;align-items:center;gap:12px}
+.t-av{
+  width:38px;height:38px;border-radius:50%;
+  background:var(--brand);display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:600;color:#fff;flex-shrink:0;
+}
+.t-name{font-size:13px;font-weight:600;color:#fff}
+.t-meta{font-size:11px;color:rgba(255,255,255,0.35)}
+
+/* ── WAITLIST ── */
+#waitlist{
+  background:var(--dark);
+  padding:100px 24px;
+  text-align:center;
+}
+.waitlist-box{
+  max-width:560px;margin:0 auto;
+}
+.waitlist-count{
+  display:inline-block;
+  background:rgba(255,107,26,0.1);border:1px solid rgba(255,107,26,0.2);
+  border-radius:100px;padding:6px 18px;
+  font-size:12px;color:var(--brand);font-weight:500;
+  margin-bottom:32px;letter-spacing:.05em;
+}
+.waitlist-form{
+  display:flex;gap:10px;margin-top:32px;max-width:440px;margin:32px auto 0;
+}
+.waitlist-input{
+  flex:1;background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius:12px;padding:14px 18px;
+  font-size:14px;color:#fff;font-family:inherit;
+  transition:border-color .2s;
+}
+.waitlist-input:focus{outline:none;border-color:rgba(255,107,26,0.5)}
+.waitlist-input::placeholder{color:rgba(255,255,255,0.3)}
+.waitlist-btn{
+  background:var(--brand);color:#fff;border:none;
+  border-radius:12px;padding:14px 24px;
+  font-size:14px;font-weight:600;cursor:pointer;
+  font-family:inherit;white-space:nowrap;transition:opacity .15s;
+}
+.waitlist-btn:hover{opacity:.9}
+.waitlist-note{font-size:12px;color:rgba(255,255,255,0.25);margin-top:14px}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--black);padding:60px 24px 40px;
+  border-top:1px solid var(--border);
+}
+.footer-grid{
+  max-width:1100px;margin:0 auto;
+  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;
+  margin-bottom:48px;
+}
+.footer-brand{display:flex;flex-direction:column;gap:16px}
+.footer-logo{display:flex;align-items:center;gap:10px}
+.footer-logo-icon{
+  width:34px;height:34px;border-radius:10px;
+  background:var(--brand);display:flex;align-items:center;justify-content:center;
+  font-family:'Bebas Neue',sans-serif;font-size:15px;color:#fff;
+}
+.footer-logo-name{font-size:14px;font-weight:500}
+.footer-tagline{font-size:13px;color:rgba(255,255,255,0.35);line-height:1.6;max-width:240px}
+.footer-col h4{font-size:12px;font-weight:600;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+.footer-col a{
+  display:block;font-size:13px;color:rgba(255,255,255,0.4);
+  text-decoration:none;margin-bottom:10px;transition:color .2s;
+}
+.footer-col a:hover{color:#fff}
+.footer-bottom{
+  max-width:1100px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  padding-top:32px;border-top:1px solid var(--border);
+  font-size:12px;color:rgba(255,255,255,0.25);
+}
+.footer-bottom a{color:rgba(255,255,255,0.35);text-decoration:none}
+.footer-bottom a:hover{color:#fff}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.reveal{
+  opacity:0;transform:translateY(24px);
+  transition:opacity .6s ease,transform .6s ease;
+}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .features-grid,.plans-grid,.steps,.stats-grid,.testimonials-grid{grid-template-columns:1fr}
+  .ai-layout{grid-template-columns:1fr;gap:40px}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .nav-links{display:none}
+  .nav-mobile{display:block}
+  .hero h1{font-size:clamp(52px,14vw,84px)}
+  .phone{width:260px}
+}
+@media(max-width:600px){
+  nav{padding:14px 20px}
+  section{padding:72px 20px}
+  .waitlist-form{flex-direction:column}
+  .footer-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="nav-icon">MP</div>
+    <span class="nav-name">Meu Personal AI</span>
+  </div>
+  <div class="nav-links">
+    <a href="#features">Funcionalidades</a>
+    <a href="#how">Como funciona</a>
+    <a href="#plans">Planos</a>
+    <a href="#testimonials">Depoimentos</a>
+  </div>
+  <a href="#waitlist" class="nav-cta">Entrar na lista →</a>
+  <a href="#waitlist" class="nav-cta nav-mobile">Lista de espera</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-badge">
+    <span class="badge-dot"></span>
+    Disponível em breve — iOS &amp; Android
+  </div>
+  <h1>SEU PERSONAL<br><em>MAIS INTELIGENTE</em><br>QUE O REAL</h1>
+  <p class="hero-sub">IA que aprende a cada treino, adapta em tempo real e nunca te dá resposta genérica. Como ter um personal trainer de elite no seu bolso.</p>
+  <div class="hero-actions">
+    <a href="#waitlist" class="btn-primary">
+      <svg class="store-icon" viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      App Store
+    </a>
+    <a href="#waitlist" class="btn-primary" style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.12)">
+      <svg class="store-icon" viewBox="0 0 24 24"><path d="M3.18 23.76c.37.21.8.22 1.2.04l12.19-6.83-2.62-2.64-10.77 9.43zm-1.9-20.7C1.1 3.4 1 3.77 1 4.2v15.6c0 .43.1.8.28 1.1l.09.08 8.73-8.73v-.2L1.37 3.02l-.09.04zM20.49 10.7l-2.68-1.5-2.94 2.94 2.94 2.93 2.7-1.52c.77-.43.77-1.42-.02-1.85zM4.38.22L16.57 7.06l-2.63 2.63L3.18.26C3.58.08 4.01.09 4.38.22z"/></svg>
+      Google Play
+    </a>
+    <a href="#how" class="btn-secondary">Como funciona</a>
+  </div>
+  <div class="hero-proof">
+    <div class="avatars">
+      <div class="av">JM</div>
+      <div class="av" style="background:#534AB7">CS</div>
+      <div class="av" style="background:#1D9E75">AF</div>
+      <div class="av" style="background:#D4537E">LR</div>
+    </div>
+    <div>
+      <div class="stars">★★★★★</div>
+      <span>+1.200 na lista de espera</span>
+    </div>
+  </div>
+</section>
+
+<!-- PHONE MOCKUP -->
+<div class="phone-section">
+  <div class="phone-wrap">
+    <div class="phone">
+      <div class="phone-notch"></div>
+      <div class="phone-screen">
+        <div class="phone-topbar">
+          <div>
+            <div class="phone-greeting">Bom dia,</div>
+            <div class="phone-name">João ✌</div>
+          </div>
+          <div class="phone-avatar">JM</div>
+        </div>
+        <div class="ai-bubble">
+          <div class="ai-label">ALEX · PERSONAL AI</div>
+          <div class="ai-text">Hoje é dia de peito + tríceps. Sua última sessão foi excelente — vamos bater um PR! Carga alvo: 82,5kg no supino.</div>
+        </div>
+        <div class="phone-stats">
+          <div class="stat-card"><div class="stat-n">12</div><div class="stat-l">Streak</div></div>
+          <div class="stat-card"><div class="stat-n">87%</div><div class="stat-l">Aderência</div></div>
+          <div class="stat-card"><div class="stat-n">3/4</div><div class="stat-l">Semana</div></div>
+        </div>
+        <div class="workout-card">
+          <div class="wc-tag">TREINO DE HOJE · BLOCO A</div>
+          <div class="wc-title">Peito + Tríceps</div>
+          <div class="wc-sub">55 min · 6 exercícios · Semana 3</div>
+          <button class="wc-btn">▶ Iniciar treino</button>
+        </div>
+      </div>
+    </div>
+    <div class="phone-glow"></div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-tag">Funcionalidades</div>
+      <h2 class="section-title">TUDO QUE UM<br>PERSONAL REAL TEM</h2>
+      <p class="section-sub">E muito mais. Disponível 24h por dia, 7 dias por semana, por uma fração do custo.</p>
+    </div>
+    <div class="features-grid reveal">
+      <div class="feature-card">
+        <div class="feature-icon">🧠</div>
+        <div class="feature-title">Progressão inteligente de carga</div>
+        <div class="feature-desc">O algoritmo analisa cada série e decide se você deve aumentar, manter ou reduzir o peso. Nunca mais ficar estagnado.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <div class="feature-title">AI Coach em tempo real</div>
+        <div class="feature-desc">Converse com o Alex sobre dor, fadiga, adaptação ou motivação. Respostas baseadas no seu histórico real, não em templates.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔄</div>
+        <div class="feature-title">Substituição inteligente</div>
+        <div class="feature-desc">Relatou dor no ombro? Em segundos a IA substitui o exercício e adapta o treino completo para o dia.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <div class="feature-title">Analytics de força e corpo</div>
+        <div class="feature-desc">Gráficos de evolução por exercício, PRs históricos, aderência e volume semanal. Veja sua evolução de verdade.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🏆</div>
+        <div class="feature-title">Social e ranking</div>
+        <div class="feature-desc">Desafios semanais, ranking com amigos e pontos por consistência. Competição saudável que aumenta a aderência em 40%.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎯</div>
+        <div class="feature-title">Programa gerado por IA</div>
+        <div class="feature-desc">5 perguntas de anamnese e a IA gera um programa completo de periodização — por blocos, semanas e sessões.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-tag">Como funciona</div>
+      <h2 class="section-title">DO ZERO AO<br>PRIMEIRO TREINO<br>EM 2 MINUTOS</h2>
+    </div>
+    <div class="steps reveal">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-title">Responda 5 perguntas</div>
+        <div class="step-desc">Objetivo, nível, frequência, ambiente de treino. Sem burocracia — a anamnese leva 90 segundos.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-title">Receba seu programa</div>
+        <div class="step-desc">A IA gera um programa completo de periodização em menos de 30 segundos, personalizado para você.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-title">Treine com guia</div>
+        <div class="step-desc">Execução passo a passo, timer de descanso, vídeos e coaching cues da IA durante o treino.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-title">Evolua sempre</div>
+        <div class="step-desc">A cada sessão a IA recalibra sua carga, adapta ao seu progresso e notifica sobre conquistas.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AI SECTION -->
+<section id="ai">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-tag">Inteligência artificial</div>
+      <h2 class="section-title">UM COACH QUE<br>REALMENTE TE<br>CONHECE</h2>
+    </div>
+    <div class="ai-layout reveal">
+      <div class="ai-chat">
+        <div class="chat-msg">
+          <div>
+            <div class="msg-name">ALEX · PERSONAL AI</div>
+            <div class="msg msg-ai">João, analisei seus últimos 7 treinos. Você está evoluindo 18% acima da média para seu nível. Hoje sugiro tentar 82,5kg no supino — você está pronto.</div>
+          </div>
+          <div class="msg msg-user">Tô sentindo o ombro esquerdo forçando</div>
+          <div>
+            <div class="msg-name">ALEX · PERSONAL AI</div>
+            <div class="msg msg-ai">Entendido. Substituí o supino inclinado por crucifixo com halteres e reduzi a carga de desenvolvimento para 70%. Dor ao elevar o braço acima de 90°?</div>
+          </div>
+          <div class="msg msg-user">Não, só no movimento horizontal</div>
+          <div>
+            <div class="msg-name">ALEX · PERSONAL AI</div>
+            <div class="msg msg-ai">Pode ser o manguito rotador. Ajustei o treino de hoje e adicionei 2 exercícios de mobilidade. Se persistir amanhã, recomendo avaliação com fisioterapeuta.</div>
+          </div>
+        </div>
+        <div class="chat-input-mock">
+          <div class="chat-input-field">Pergunte ao Alex...</div>
+          <button class="chat-send">↑</button>
+        </div>
+      </div>
+      <ul class="ai-points">
+        <li class="ai-point">
+          <div class="ai-point-icon">🧬</div>
+          <div>
+            <div class="ai-point-title">Memória de longo prazo</div>
+            <div class="ai-point-desc">O Alex lembra de cada série, cada PR, cada dor relatada. Suas respostas refletem semanas de histórico, não só a sessão de hoje.</div>
+          </div>
+        </li>
+        <li class="ai-point">
+          <div class="ai-point-icon">🔥</div>
+          <div>
+            <div class="ai-point-title">Adaptação em tempo real</div>
+            <div class="ai-point-desc">Relatou dor? Chegou tarde? Treino adaptado na hora, sem perder o foco no objetivo de longo prazo.</div>
+          </div>
+        </li>
+        <li class="ai-point">
+          <div class="ai-point-icon">📱</div>
+          <div>
+            <div class="ai-point-title">Streaming de respostas</div>
+            <div class="ai-point-desc">Token a token, como uma conversa de verdade. Sem esperar 30 segundos por uma resposta genérica.</div>
+          </div>
+        </li>
+        <li class="ai-point">
+          <div class="ai-point-icon">🔒</div>
+          <div>
+            <div class="ai-point-title">Seus dados são seus</div>
+            <div class="ai-point-desc">Suas mensagens não treinam modelos de IA. Você pode exportar ou excluir tudo a qualquer momento.</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section id="stats">
+  <div class="container">
+    <div class="stats-grid reveal">
+      <div class="stat-item">
+        <div class="stat-value">87%</div>
+        <div class="stat-label">Taxa de aderência média dos usuários</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">127</div>
+        <div class="stat-label">Exercícios com progressão inteligente</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">2min</div>
+        <div class="stat-label">Do cadastro ao primeiro treino</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">24h</div>
+        <div class="stat-label">AI Coach disponível todos os dias</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLANS -->
+<section id="plans">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-tag">Planos</div>
+      <h2 class="section-title">COMECE GRÁTIS.<br>EVOLUA QUANDO<br>ESTIVER PRONTO.</h2>
+      <p class="section-sub">Sem cartão de crédito para começar. 7 dias grátis do Pro para novos usuários.</p>
+    </div>
+    <div class="plans-grid reveal">
+
+      <!-- FREE -->
+      <div class="plan-card">
+        <div class="plan-name">FREE</div>
+        <div class="plan-desc">Para quem quer experimentar antes de comprometer</div>
+        <div class="plan-price">
+          <span class="plan-price-value">R$0</span>
+        </div>
+        <div class="plan-annual">Para sempre gratuito</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="pf-check">✓</span><span>1 programa de treino ativo</span></li>
+          <li><span class="pf-check">✓</span><span>Execução com timer e progressão</span></li>
+          <li><span class="pf-check">✓</span><span>5 mensagens por dia com a IA</span></li>
+          <li><span class="pf-check">✓</span><span>Histórico básico de treinos</span></li>
+          <li><span class="pf-x">✗</span><span>Analytics avançado</span></li>
+          <li><span class="pf-x">✗</span><span>Social e ranking</span></li>
+          <li><span class="pf-x">✗</span><span>Fotos de progresso</span></li>
+        </ul>
+        <button class="plan-btn plan-btn-outline" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">Começar grátis</button>
+      </div>
+
+      <!-- PRO -->
+      <div class="plan-card featured">
+        <div class="plan-badge">MAIS POPULAR</div>
+        <div class="plan-name">PRO</div>
+        <div class="plan-desc">Para quem leva o treino a sério e quer resultados reais</div>
+        <div class="plan-price">
+          <span class="plan-price-value">R$39</span>
+          <span class="plan-price-period">/mês</span>
+        </div>
+        <div class="plan-annual">ou <strong>R$29/mês</strong> no plano anual — economize 26%</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="pf-check">✓</span><span>Programas ilimitados</span></li>
+          <li><span class="pf-check">✓</span><span>AI Coach ilimitado</span></li>
+          <li><span class="pf-check">✓</span><span>Analytics completo de força e corpo</span></li>
+          <li><span class="pf-check">✓</span><span>Social, ranking e desafios</span></li>
+          <li><span class="pf-check">✓</span><span>Fotos de progresso antes/depois</span></li>
+          <li><span class="pf-check">✓</span><span>Treino express gerado por IA</span></li>
+          <li><span class="pf-check">✓</span><span>Substituição inteligente de exercício</span></li>
+        </ul>
+        <button class="plan-btn plan-btn-primary" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">Testar 7 dias grátis</button>
+      </div>
+
+      <!-- ELITE -->
+      <div class="plan-card">
+        <div class="plan-name">ELITE</div>
+        <div class="plan-desc">Para personal trainers e quem quer o máximo absoluto</div>
+        <div class="plan-price">
+          <span class="plan-price-value">R$89</span>
+          <span class="plan-price-period">/mês</span>
+        </div>
+        <div class="plan-annual">ou <strong>R$69/mês</strong> no plano anual — economize 22%</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="pf-check">✓</span><span>Tudo do Pro</span></li>
+          <li><span class="pf-check">✓</span><span>Até 10 perfis (alunos e família)</span></li>
+          <li><span class="pf-check">✓</span><span>Análise de postura por vídeo com IA</span></li>
+          <li><span class="pf-check">✓</span><span>Painel completo de personal trainer</span></li>
+          <li><span class="pf-check">✓</span><span>Export PDF de relatórios</span></li>
+          <li><span class="pf-check">✓</span><span>Apple Health + Google Fit sync</span></li>
+          <li><span class="pf-check">✓</span><span>Suporte prioritário em 4h</span></li>
+        </ul>
+        <button class="plan-btn plan-btn-dark" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">Entrar na lista Elite</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-tag">Depoimentos</div>
+      <h2 class="section-title">O QUE DIZEM OS<br>BETA TESTERS</h2>
+    </div>
+    <div class="testimonials-grid reveal">
+      <div class="testimonial">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-text">"Testei dezenas de apps de treino. Nenhum chegou perto. A IA realmente entende quando estou sobrecarregado e ajusta o treino antes mesmo de eu reclamar."</p>
+        <div class="t-author">
+          <div class="t-av">JM</div>
+          <div>
+            <div class="t-name">João Mendes</div>
+            <div class="t-meta">Intermediário · 2 anos treinando</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-text">"Como personal trainer, mostrei pra vários alunos. O nível de personalização é impressionante. O plano Elite me deixa acompanhar tudo em um lugar só."</p>
+        <div class="t-author">
+          <div class="t-av" style="background:#534AB7">CS</div>
+          <div>
+            <div class="t-name">Carlos Silva</div>
+            <div class="t-meta">Personal Trainer · 6 anos de carreira</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-text">"Quebrei meu PR no agachamento na terceira semana de uso. O Alex foi mais importante do que o espelho naquela sessão. App simplesmente diferente."</p>
+        <div class="t-author">
+          <div class="t-av" style="background:#1D9E75">AF</div>
+          <div>
+            <div class="t-name">Ana Ferreira</div>
+            <div class="t-meta">Avançada · Powerlifting recreativo</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAITLIST -->
+<section id="waitlist">
+  <div class="container">
+    <div class="waitlist-box reveal">
+      <div class="waitlist-count">✦ 1.247 pessoas na lista de espera</div>
+      <h2 class="section-title" style="font-size:clamp(48px,7vw,88px)">SEJA O<br>PRIMEIRO</h2>
+      <p class="section-sub" style="margin:0 auto 0;text-align:center">Lançamento em breve. Entre na lista e garanta acesso antecipado com 3 meses de Pro grátis.</p>
+      <div class="waitlist-form">
+        <input class="waitlist-input" type="email" placeholder="seu@email.com" id="email-input">
+        <button class="waitlist-btn" onclick="joinWaitlist()">Garantir vaga →</button>
+      </div>
+      <div class="waitlist-note" id="waitlist-msg">Sem spam. Só avisamos quando abrir. Cancele quando quiser.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <div class="footer-logo-icon">MP</div>
+        <span class="footer-logo-name">Meu Personal AI</span>
+      </div>
+      <p class="footer-tagline">Seu personal trainer com inteligência artificial. Disponível para iOS e Android.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Produto</h4>
+      <a href="#features">Funcionalidades</a>
+      <a href="#how">Como funciona</a>
+      <a href="#plans">Planos</a>
+      <a href="#testimonials">Depoimentos</a>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="privacy_policy.html">Política de privacidade</a>
+      <a href="terms_of_service.html">Termos de uso</a>
+      <a href="#">LGPD</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contato</h4>
+      <a href="mailto:suporte@meupersonalai.com.br">Suporte</a>
+      <a href="mailto:privacidade@meupersonalai.com.br">Privacidade</a>
+      <a href="mailto:juridico@meupersonalai.com.br">Jurídico</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Meu Personal AI Tecnologia Ltda. Todos os direitos reservados.</span>
+    <span><a href="privacy_policy.html">Privacidade</a> · <a href="terms_of_service.html">Termos</a></span>
+  </div>
+</footer>
+
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, {threshold: 0.1, rootMargin: '0px 0px -40px 0px'});
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Waitlist
+function joinWaitlist() {
+  const input = document.getElementById('email-input');
+  const msg   = document.getElementById('waitlist-msg');
+  const email = input.value.trim();
+
+  if(!email || !email.includes('@')) {
+    input.style.borderColor = 'rgba(224,82,82,0.6)';
+    setTimeout(() => input.style.borderColor = '', 1500);
+    return;
+  }
+
+  // Simulação — em produção: POST /waitlist
+  input.value = '';
+  input.placeholder = email;
+  msg.textContent = '✓ Você está na lista! Vamos te avisar quando abrir.';
+  msg.style.color = '#22a868';
+
+  const btn = document.querySelector('.waitlist-btn');
+  btn.textContent = 'Na lista ✓';
+  btn.style.background = '#22a868';
+  btn.disabled = true;
+}
+
+// Enter key no input
+document.getElementById('email-input')?.addEventListener('keypress', function(e) {
+  if(e.key === 'Enter') joinWaitlist();
+});
+
+// Nav scroll effect
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('nav');
+  if(window.scrollY > 60) {
+    nav.style.background = 'rgba(13,13,13,0.96)';
+  } else {
+    nav.style.background = 'rgba(13,13,13,0.85)';
+  }
+});
+</script>
+
+</body>
+</html>

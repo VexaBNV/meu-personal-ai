@@ -1,0 +1,82 @@
+# ══════════════════════════════════════════════════════════════
+# .gitignore — Meu Personal AI
+# ══════════════════════════════════════════════════════════════
+
+# ── Segredos (NUNCA commitar) ──────────────────────────────────
+.env
+.env.local
+.env.production
+*.pem
+*.p8
+*.p12
+*.keystore
+*.jks
+google-services.json
+GoogleService-Info.plist
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+
+# ── Node / Backend ─────────────────────────────────────────────
+node_modules/
+dist/
+build/
+*.js.map
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm
+.eslintcache
+
+# ── Flutter / Dart ─────────────────────────────────────────────
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+*.g.dart
+*.freezed.dart
+coverage/
+
+# ── Android ────────────────────────────────────────────────────
+mobile/android/.gradle/
+mobile/android/captures/
+mobile/android/local.properties
+mobile/android/**/GeneratedPluginRegistrant.java
+mobile/android/key.properties
+mobile/android/app/google-services.json
+
+# ── iOS ────────────────────────────────────────────────────────
+mobile/ios/.symlinks/
+mobile/ios/Flutter/App.framework
+mobile/ios/Flutter/Flutter.framework
+mobile/ios/Flutter/Flutter.podspec
+mobile/ios/Flutter/Generated.xcconfig
+mobile/ios/Flutter/flutter_assets/
+mobile/ios/Flutter/flutter_export_environment.sh
+mobile/ios/ServiceDefinitions.json
+mobile/ios/Runner/GeneratedPluginRegistrant.*
+mobile/ios/Pods/
+mobile/ios/Podfile.lock
+
+# ── IDEs ────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# ── Docker ─────────────────────────────────────────────────────
+docker-data/
+
+# ── Logs ────────────────────────────────────────────────────────
+logs/
+*.log
+
+# ── Temporários ─────────────────────────────────────────────────
+tmp/
+temp/
+.cache/

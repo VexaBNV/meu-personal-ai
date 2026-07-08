@@ -1,0 +1,56 @@
+# ══════════════════════════════════════════════════════════════
+# flutter_native_splash.yaml
+#
+# Gera splash screen nativa em iOS e Android.
+# Execute: dart run flutter_native_splash:create
+# Para remover: dart run flutter_native_splash:remove
+#
+# Requisitos:
+# - Logo em assets/icons/splash_logo.png (recomendado: 300×300px)
+#   Logo deve ser branco ou ter fundo transparente
+# ══════════════════════════════════════════════════════════════
+
+flutter_native_splash:
+  # ── Configuração geral ───────────────────────────────────────
+  color: "#111111"              # fundo preto (brand AppColors.black)
+  image: assets/icons/splash_logo.png
+
+  # Posição da logo (center | top | bottom)
+  fullscreen: true
+
+  # ── iOS ──────────────────────────────────────────────────────
+  color_ios: "#111111"
+  image_ios: assets/icons/splash_logo.png
+  
+  # iOS 16+ suporta modo escuro nativo
+  color_dark_ios: "#111111"
+  image_dark_ios: assets/icons/splash_logo.png
+
+  # ── Android ──────────────────────────────────────────────────
+  color_android: "#111111"
+  image_android: assets/icons/splash_logo.png
+  
+  # Android 12+ usa SplashScreen API
+  android_12:
+    color: "#111111"
+    image: assets/icons/splash_logo.png
+    icon_background_color: "#FF6B1A"    # laranja ao redor da logo no Android 12
+    
+    # Modo escuro Android 12
+    color_dark: "#111111"
+    image_dark: assets/icons/splash_logo.png
+    icon_background_color_dark: "#FF6B1A"
+
+  # ── Configuração da tela em Flutter (SplashScreen.dart) ──────
+  # Após a splash nativa, o Flutter mantém a tela até o app estar pronto.
+  # Use no main.dart:
+  #   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  #   // ... inicialização (Firebase, Hive, etc)
+  #   FlutterNativeSplash.remove();
+
+# ── pubspec.yaml — adicione a dependência ────────────────────
+# dependencies:
+#   flutter_native_splash: ^2.4.3
+#
+# dev_dependencies:
+#   (não precisa, o pacote usa dart run)
