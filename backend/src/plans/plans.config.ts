@@ -1,19 +1,23 @@
-// src/plans/plans.config.ts
-
 export type PlanId = 'free' | 'pro' | 'elite';
+
+export const PlanId = {
+  FREE:  'free'  as const,
+  PRO:   'pro'   as const,
+  ELITE: 'elite' as const,
+};
 
 export interface PlanFeatures {
   aiMessagesPerDay: number;
-  maxPrograms: number;
-  analytics: boolean;
-  photoProgress: boolean;
-  expressWorkout: boolean;
-  healthSync: boolean;
-  trainerPanel: boolean;
-  maxProfiles: number;
+  maxPrograms:      number;
+  analytics:        boolean;
+  photoProgress:    boolean;
+  expressWorkout:   boolean;
+  healthSync:       boolean;
+  trainerPanel:     boolean;
+  maxProfiles:      number;
 }
 
-export const PLANS: Record<PlanId, { name: string; features: PlanFeatures }> = {
+export const PLANS: Record<string, { name: string; features: PlanFeatures }> = {
   free: {
     name: 'Free',
     features: {
@@ -55,6 +59,6 @@ export const PLANS: Record<PlanId, { name: string; features: PlanFeatures }> = {
   },
 };
 
-export function getLimits(planId: PlanId): PlanFeatures {
+export function getLimits(planId: string): PlanFeatures {
   return PLANS[planId]?.features ?? PLANS.free.features;
 }
