@@ -1,16 +1,15 @@
 FROM node:20-alpine
 WORKDIR /app
 
-COPY package.json package-lock.json ./
+COPY meu-personal-ai/backend/package.json meu-personal-ai/backend/package-lock.json ./
 RUN npm ci
 
-COPY . .
+COPY meu-personal-ai/backend/ .
 RUN npm run build
-RUN ls -la /app/dist/ && echo "Build OK"
 
 ENV NODE_ENV=production
 ENV PORT=3000
 
 EXPOSE 3000
 
-CMD ["node", "/app/dist/main.js"]
+CMD ["node", "dist/main.js"]
