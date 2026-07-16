@@ -1,10 +1,10 @@
 FROM node:20-alpine
 WORKDIR /app
 
-COPY meu-personal-ai/backend/package.json meu-personal-ai/backend/package-lock.json ./
-RUN npm ci
+COPY package.json ./
+RUN npm install
 
-COPY meu-personal-ai/backend/ .
+COPY . .
 RUN npm run build
 
 ENV NODE_ENV=production
