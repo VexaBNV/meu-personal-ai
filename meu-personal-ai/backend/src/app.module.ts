@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { BullModule } from '@nestjs/bull';
+import { RedisModule } from '@nestjs-modules/ioredis';
 import * as admin from 'firebase-admin';
 
 import { AuthModule } from './auth/auth.module';
@@ -44,6 +45,16 @@ import { AppController } from './app.controller';
       inject: [ConfigService],
       useFactory: (cfg: ConfigService) => ({
         redis: cfg.get('REDIS_URL'),
+      }),
+    }),
+
+    // Cliente Redis (usado via @InjectRedis(), ex.: AppController health check)
+    RedisModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (cfg: ConfigService) => ({
+        type: 'single' as const,
+        url: cfg.get<string>('REDIS_URL'),
       }),
     }),
 
